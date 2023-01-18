@@ -1,12 +1,12 @@
 import React from 'react'
+import Axios from 'axios';
 
 export default function Products() {
 
     const apiURL = `https://catfact.ninja/fact`;
-    fetch(apiURL)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
+    Axios.get(apiURL)
+        .then(function (response) {
+            console.log(response);
         });
 
     return (

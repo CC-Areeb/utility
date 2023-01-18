@@ -152,7 +152,7 @@ export default function Rootlayout() {
 }
 ```
 
-### Fetching API
+### Fetching API without axios
 
 In JavaScript we use fetch function when we are dealing with data from a server or backend.
 
@@ -184,3 +184,22 @@ fetch(apiURL).then((response) => response.json())
 ```
 fetch(apiURL).then((response) => response.json()).then((data) => { console.log(data) });
 ```
+
+### Fetching API with axios
+- To use axios, we first need to install it using node package manager.
+    `npm install axios`
+
+- Now import Axios as shown 
+    `import Axios from 'axios';`
+
+- When using axios, we do not need to convert the data from API into JSON format.
+
+- A get request example shown below
+    ```
+    const apiURL = `https://catfact.ninja/fact`;
+
+    Axios.get(apiURL)
+        .then(function (response) {
+            console.log(response);
+        });
+    ```
