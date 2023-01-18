@@ -113,7 +113,7 @@ export default function Sidebar() {
 }
 ```
 
-- To add more routes you have to use the `<Route />` tags and provide a `path` and the `element` to it and make sure it is inside the `createBrowserRouter` method
+- To add more routes you have to use the `<Route />` tags and provide a `path` and the `element` to it and make sure it is inside the `createBrowserRouter` method. The element here are the react components themselves.
 ```
 const route = createBrowserRouter(
     createRoutesFromElements(
