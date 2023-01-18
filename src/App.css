@@ -34,3 +34,18 @@
     transition: 0.3s;
     color: var(--main-hover-text-color);
 }
+
+
+
+/* all components */
+.items
+{
+    display: grid;
+    justify-items: center;
+}
+
+.content
+{
+    margin: 30px 0px 0px 330px;
+}
+
