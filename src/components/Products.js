@@ -1,18 +1,48 @@
 import React from 'react'
 
 export default function Products() {
+
+    const apiURL = `https://catfact.ninja/fact`;
+    fetch(apiURL)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        });
+
     return (
         <div className='items'>
             <p className='display-1'>Products</p>
-            <p className='content'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti accusantium, impedit eligendi, facere possimus
-                inventore ea tenetur perspiciatis odio eveniet natus
-                officia ullam libero blanditiis deleniti saepe neque.
-                Eius consequuntur, nisi dolorum quia ipsum maxime error?
-                Dignissimos recusandae enim aut omnis delectus commodi culpa a.
-                Facilis odio similique quaerat nemo?
-            </p>
+            <div className='text-center' id='prod_table'>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Images</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">SKU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>image 1</td>
+                            <td>title 1</td>
+                            <td>category 1</td>
+                            <td>SKU 1</td>
+                        </tr>
+
+                        <tr>
+                            <td>image 2</td>
+                            <td>title 2</td>
+                            <td>category 2</td>
+                            <td>SKU 2</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div className="d-flex justify-content-between my-4">
+                    <button type="button" className="btn btn-dark" ><i className="bi bi-arrow-left"></i> Previous</button>
+                    <button type="button" className="btn btn-dark" >Next <i className="bi bi-arrow-right"></i></button>
+                </div>
+            </div>
         </div>
     )
 }

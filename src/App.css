@@ -10,6 +10,22 @@
 /* Media queries */
 
 
+
+
+/* all components */
+.items
+{
+    display: grid;
+    justify-items: center;
+}
+
+.content
+{
+    margin: var(--margin);
+}
+
+
+
 /* side bar component */
 #side_bar
 {
@@ -37,16 +53,9 @@
 }
 
 
-
-/* all components */
-.items
+/* Products.js */
+#prod_table
 {
-    display: grid;
-    justify-items: center;
+    width: 75%;
+    margin-left: 18rem;
 }
-
-.content
-{
-    margin: var(--margin);
-}
-

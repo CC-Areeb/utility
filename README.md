@@ -151,3 +151,36 @@ export default function Rootlayout() {
     )
 }
 ```
+
+### Fetching API
+
+In JavaScript we use fetch function when we are dealing with data from a server or backend.
+
+```
+const apiURL = `https://catfact.ninja/fact`;
+
+fetch(apiURL)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
+```
+
+- When we use fetch, we have to use a callback function called `then()` and attach it with the fetch method as shown
+```
+fetch(apiURL).then((response))
+```
+
+- With the `then()` callback we can perform actions on the data we got.
+
+- The first required action we have to do is that we have to convert the data into JSON format as shown below
+```
+fetch(apiURL).then((response) => response.json())
+```
+
+- A JSON is a standard text-based format for representing structured data based on JavaScript object syntax.
+
+- We can add on more callback promises or callback functions as shown below
+```
+fetch(apiURL).then((response) => response.json()).then((data) => { console.log(data) });
+```

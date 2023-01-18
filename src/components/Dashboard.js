@@ -9,5 +9,5 @@ export default function Dashboard() {
             </div>
         </div>
     )
-    // add the content later when you work on dashboard
+    // add the content in class name and replace text-center later when you work on dashboard
 }
