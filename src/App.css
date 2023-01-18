@@ -4,6 +4,7 @@
     --main-hover-color: darkcyan;
     --main-hover-text-color: #b58a51;
     --main-text-color: black;
+    --margin: 30px 0px 0px 330px
 }
 
 /* Media queries */
@@ -46,6 +47,6 @@
 
 .content
 {
-    margin: 30px 0px 0px 330px;
+    margin: var(--margin);
 }
 
