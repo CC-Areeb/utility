@@ -1,9 +1,36 @@
+/* Root styles */
 :root
 {
     --main-hover-color: darkcyan;
+    --main-hover-text-color: #b58a51;
+    --main-text-color: black;
 }
 
-#home:hover, #about:hover, #functions:hover
+/* Media queries */
+
+
+/* side bar component */
+#side_bar
 {
-    color: var(--main-hover-color);
-}   
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F3F6;
+    width: 20rem;
+    height: 100%;
+    position: fixed;
+    overflow-x: hidden;
+    align-items: flex-start;
+}
+
+#side_bar > a{
+    text-decoration: none;
+    color: var(--main-text-color);
+    padding: 5px 0px;
+    font-size: 20px;
+}
+
+#side_bar > a:hover
+{
+    transition: 0.3s;
+    color: var(--main-hover-text-color);
+}
