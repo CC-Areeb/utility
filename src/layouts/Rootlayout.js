@@ -21,7 +21,7 @@ export default function Rootlayout() {
                 <NavLink to="/invalid-codes"><i className="bi bi-bug"></i> Invalid Codes</NavLink>
                 <NavLink to="/reports"><i className="bi bi-file-earmark-bar-graph"></i> Reports</NavLink>
                 <NavLink to="/site-settings"><i className="bi bi-sliders"></i> Manage Site Settings</NavLink>
-                <NavLink to="/logout"><i className="bi bi-door-open"></i> Logout</NavLink>
+                {/* <NavLink to="/logout"><i className="bi bi-door-open"></i> Logout</NavLink> */}
             </header>
             <main>
                 <Outlet />

@@ -4,15 +4,10 @@ export default function Dashboard() {
     return (
         <div className='items'>
             <p className='display-1'>Dashboard</p>
-            <div className='content'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti accusantium, impedit eligendi, facere possimus
-                inventore ea tenetur perspiciatis odio eveniet natus
-                officia ullam libero blanditiis deleniti saepe neque.
-                Eius consequuntur, nisi dolorum quia ipsum maxime error?
-                Dignissimos recusandae enim aut omnis delectus commodi culpa a.
-                Facilis odio similique quaerat nemo?
+            <div className='text-center'>
+                Will do in last 😋  
             </div>
         </div>
     )
+    // add the content in class name and replace text-center later when you work on dashboard
 }

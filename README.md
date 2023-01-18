@@ -68,3 +68,138 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# React Router DOM (6.4 and above)
+
+The latest version of react router dom has some changes regarding how to setup the routing system and includes additional features
+
+**Steps to setup react router**
+
+- Install the latest react router dom version `npm i react-router-dom`.
+- Next you will need to set up your own `browser router` as shown below
+```
+import React from 'react';
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider,
+} from 'react-router-dom';
+
+// layouts
+import Rootlayout from '../layouts/Rootlayout';
+
+
+// componenets
+import Dashboard from './Dashboard';
+import Products from './Products';
+
+const route = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path='/' element={<Rootlayout />}>
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/products' element={<Products />} />
+        </Route>
+    )
+);
+
+export default function Sidebar() {
+    return (
+        <>
+            <RouterProvider router={route} />
+        </>
+    )
+}
+```
+
+- To add more routes you have to use the `<Route />` tags and provide a `path` and the `element` to it and make sure it is inside the `createBrowserRouter` method
+```
+const route = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path='/' element={<Rootlayout />}>
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/products' element={<Products />} />
+        </Route>
+    )
+);
+```
+
+- Now provide the route provider to return the routes to be rendered in the browser
+```
+<>
+    <RouterProvider router={route} />
+</>
+```
+
+- To make things clean, we will use a layouts folder which will contain our routes or links. Inside the Rootlayout we can set our navlinks or links and provide and outlet for it as shown below
+```
+import React from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
+
+export default function Rootlayout() {
+    return (
+        <div>
+            <header>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink to="/products">Manage Products</NavLink>
+            </header>
+            <main>
+                <Outlet />
+            </main>
+        </div>
+    )
+}
+```
+
+### Fetching API without axios
+
+In JavaScript we use fetch function when we are dealing with data from a server or backend.
+
+```
+const apiURL = `https://catfact.ninja/fact`;
+
+fetch(apiURL)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
+```
+
+- When we use fetch, we have to use a callback function called `then()` and attach it with the fetch method as shown
+```
+fetch(apiURL).then((response))
+```
+
+- With the `then()` callback we can perform actions on the data we got.
+
+- The first required action we have to do is that we have to convert the data into JSON format as shown below
+```
+fetch(apiURL).then((response) => response.json())
+```
+
+- A JSON is a standard text-based format for representing structured data based on JavaScript object syntax.
+
+- We can add on more callback promises or callback functions as shown below
+```
+fetch(apiURL).then((response) => response.json()).then((data) => { console.log(data) });
+```
+
+### Fetching API with axios
+- To use axios, we first need to install it using node package manager.
+    `npm install axios`
+
+- Now import Axios as shown 
+    `import Axios from 'axios';`
+
+- When using axios, we do not need to convert the data from API into JSON format.
+
+- A get request example shown below
+    ```
+    const apiURL = `https://catfact.ninja/fact`;
+
+    Axios.get(apiURL)
+        .then(function (response) {
+            console.log(response);
+        });
+    ```

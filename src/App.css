@@ -4,9 +4,26 @@
     --main-hover-color: darkcyan;
     --main-hover-text-color: #b58a51;
     --main-text-color: black;
+    --margin: 30px 0px 0px 330px
 }
 
 /* Media queries */
+
+
+
+
+/* all components */
+.items
+{
+    display: grid;
+    justify-items: center;
+}
+
+.content
+{
+    margin: var(--margin);
+}
+
 
 
 /* side bar component */
@@ -36,16 +53,9 @@
 }
 
 
-
-/* all components */
-.items
+/* Products.js */
+#prod_table
 {
-    display: grid;
-    justify-items: center;
+    width: 75%;
+    margin-left: 18rem;
 }
-
-.content
-{
-    margin: 30px 0px 0px 330px;
-}
-
