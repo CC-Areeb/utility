@@ -1,0 +1,9 @@
+:root
+{
+    --main-hover-color: darkcyan;
+}
+
+#home:hover, #about:hover, #functions:hover
+{
+    color: var(--main-hover-color);
+}   
