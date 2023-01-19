@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 
 export default function Products() {
+    const apiURL = `https://catfact.ninja/facts`;
+    const [state, setState] = useState([]);
 
-    const apiURL = `https://catfact.ninja/fact`;
-    Axios.get(apiURL)
-        .then(function (response) {
-            console.log(response);
-        });
+    useEffect(() => {
+        const dataFetch = async () => {
+            Axios.get(apiURL).then(function (response) {
+                setState(response.data.data.map((e) => { return e }));
+                console.log(response.data.data.map((e) => { return e }));
+            });
+        };
+
+        dataFetch();
+    }, []);
 
     return (
         <div className='items'>
@@ -16,26 +23,21 @@ export default function Products() {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">Images</th>
                             <th scope="col">Title</th>
                             <th scope="col">Category</th>
-                            <th scope="col">SKU</th>
+                            <th scope="col">Sku</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>image 1</td>
-                            <td>title 1</td>
-                            <td>category 1</td>
-                            <td>SKU 1</td>
-                        </tr>
-
-                        <tr>
-                            <td>image 2</td>
-                            <td>title 2</td>
-                            <td>category 2</td>
-                            <td>SKU 2</td>
-                        </tr>
+                        {state.map((val) => {
+                            return <>
+                                <tr>
+                                    <td>{val.fact.slice(0, 10)}</td>
+                                    <td>{val.length}</td>
+                                    <td>{val.length}</td>
+                                </tr>
+                            </>
+                        })}
                     </tbody>
                 </table>
                 <div className="d-flex justify-content-between my-4">
