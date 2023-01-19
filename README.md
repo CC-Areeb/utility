@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Install this repository
+To install this repository in you local machine, download the file as zip or clone it and run **npm i** to install the dependancies.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -113,7 +116,7 @@ export default function Sidebar() {
 }
 ```
 
-- To add more routes you have to use the `<Route />` tags and provide a `path` and the `element` to it and make sure it is inside the `createBrowserRouter` method. The element here are the react components themselves.
+- To add more routes you have to use the `<Route />` tags and provide a `path` and the `element` to it and make sure it is inside the `createBrowserRouter` method
 ```
 const route = createBrowserRouter(
     createRoutesFromElements(
