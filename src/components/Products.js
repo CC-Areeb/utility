@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
+import loader from '../utilities/loader.gif'
 
 export default function Products() {
     const apiURL = `https://catfact.ninja/facts`;
@@ -57,12 +58,12 @@ export default function Products() {
                         </tr>
                     </thead>
                     <tbody>
-                        {loading ? <span>Loading ...</span> : displayData}
+                        {loading ? <span id='loading_screen'><img src={loader} alt="" id='loader_gif'/></span> : displayData}
                     </tbody>
                 </table>
             </div>
 
-            <div>
+            <div id='pagination_items'>
                 <ReactPaginate
                     previousLabel={'Previous'}
                     nextLabel={'Next'}
