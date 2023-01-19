@@ -9,7 +9,7 @@ export default function Products() {
     const [pageNumber, setPageNumber] = useState(0);
 
     // Basic info for pagination
-    const dataPerPage = 5;
+    const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
 
@@ -39,6 +39,11 @@ export default function Products() {
         dataFetch();
     }, []);
 
+    const pageCount = Math.ceil(state.length / dataPerPage);
+    const changePage = ({selected}) => {
+        setPageNumber(selected);
+    }
+
     return (
         <div className='items'>
             <p className='display-1'>Products</p>
@@ -56,6 +61,21 @@ export default function Products() {
                     </tbody>
                 </table>
             </div>
+
+            <div>
+                <ReactPaginate
+                    previousLabel={'Previous'}
+                    nextLabel={'Next'}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={'paginateButton'}
+                    previousLinkClassName={'backBtn'}
+                    nextLinkClassName={'nextBtn'}
+                    disabledClassName={'paginateDisabled'}
+                    activeClassName={'paginateActive'}
+                />
+            </div>
+
         </div>
     )
 }
