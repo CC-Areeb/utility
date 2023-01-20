@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 
 export default function Rootlayout() {
     return (
-        <div className=''>
+        <div>
             <header id='side_bar' className='p-4'>
                 <NavLink to="/dashboard"><i className="bi bi-speedometer"></i> Dashboard</NavLink>
                 <NavLink to="/products"><i className="bi bi-box-seam"></i> Manage Products</NavLink>

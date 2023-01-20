@@ -1,5 +1,5 @@
 {
-    "articles": [
+    "read-articles": [
         {
             "source": {
                 "id": "the-wall-street-journal",
@@ -1301,19 +1301,37 @@
             "content": "‘Yellowstone’ Show Has Suburbanites Dressing Like Cattle RanchersRyan Capalbo’s life is nothing like that of a rough and tumble cowboy.The 34-year-old spends his days toiling over foster care cases, … [+659 chars]"
         }
     ],
-    "add-articles": [
+    "add-article": [
         {
-            "source": {
-                "id": "the-wall-street-journal-new",
-                "name": "The Wall Street Journal new edition"
-            },
             "author": "Talal Ansari",
-"title": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects - The Wall Street Journal",
-"description": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects  The Wall Street JournalView Full Coverage on Google News",
-"url": "https://www.wsj.com/articles/galactic-panorama-of-milky-way-details-3-3-billion-celestial-objects-11674169406",
-"urlToImage": "https://images.wsj.net/im-706929/social",
-"publishedAt": "2023-01-19T23:03:00Z",
-"content": "Astronomers have identified 3.32 billion celestial objects in the Milky Way in unprecedented detail.\r\nThe galactic panorama of stars, gas, dust and a supermassive black hole known as Sagittarius A* w… [+269 chars]"
+            "title": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects - The Wall Street Journal",
+            "description": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects  The Wall Street JournalView Full Coverage on Google News",
+            "url": "https://www.wsj.com/articles/galactic-panorama-of-milky-way-details-3-3-billion-celestial-objects-11674169406",
+            "urlToImage": "https://images.wsj.net/im-706929/social",
+            "publishedAt": "2023-01-19T23:03:00Z",
+            "content": "Astronomers have identified 3.32 billion celestial objects in the Milky Way in unprecedented detail.\r\nThe galactic panorama of stars, gas, dust and a supermassive black hole known as Sagittarius A* w… [+269 chars]"
+        }
+    ],
+    "update-article": [
+        {
+            "author": "Talal Ansari",
+            "title": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects - The Wall Street Journal",
+            "description": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects  The Wall Street JournalView Full Coverage on Google News",
+            "url": "https://www.wsj.com/articles/galactic-panorama-of-milky-way-details-3-3-billion-celestial-objects-11674169406",
+            "urlToImage": "https://images.wsj.net/im-706929/social",
+            "publishedAt": "2023-01-19T23:03:00Z",
+            "content": "Astronomers have identified 3.32 billion celestial objects in the Milky Way in unprecedented detail.\r\nThe galactic panorama of stars, gas, dust and a supermassive black hole known as Sagittarius A* w… [+269 chars]"
+        }
+    ],
+    "delete-article": [
+        {
+            "author": "Talal Ansari",
+            "title": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects - The Wall Street Journal",
+            "description": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects  The Wall Street JournalView Full Coverage on Google News",
+            "url": "https://www.wsj.com/articles/galactic-panorama-of-milky-way-details-3-3-billion-celestial-objects-11674169406",
+            "urlToImage": "https://images.wsj.net/im-706929/social",
+            "publishedAt": "2023-01-19T23:03:00Z",
+            "content": "Astronomers have identified 3.32 billion celestial objects in the Milky Way in unprecedented detail.\r\nThe galactic panorama of stars, gas, dust and a supermassive black hole known as Sagittarius A* w… [+269 chars]"
         }
     ]
 }
