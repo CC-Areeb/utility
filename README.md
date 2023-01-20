@@ -207,6 +207,7 @@ fetch(apiURL).then((response) => response.json()).then((data) => { console.log(d
         });
     ```
 
+
 ### JSON server
 - We can set up our own local json server which will act as a 
     database temporarily until the backend server is not ready yet.
