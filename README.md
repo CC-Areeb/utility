@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Install this repository
+To install this repository in you local machine, download the file as zip or clone it and run **npm i** to install the dependancies.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -203,3 +206,16 @@ fetch(apiURL).then((response) => response.json()).then((data) => { console.log(d
             console.log(response);
         });
     ```
+
+### JSON server
+- We can set up our own local json server which will act as a 
+    database temporarily until the backend server is not ready yet.
+
+- We use the json server to get a mock version of the REST API
+    that we normally use in our websites.
+
+- Below is the link from the node package manager
+    website where json server is installed globally on our systems
+    and find useful code snippets for json servers.
+
+- link: https://www.npmjs.com/package/json-server
