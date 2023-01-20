@@ -219,3 +219,120 @@ fetch(apiURL).then((response) => response.json()).then((data) => { console.log(d
     and find useful code snippets for json servers.
 
 - link: https://www.npmjs.com/package/json-server
+
+
+### Storing data in json server
+
+We can send post request to json server to store data as shown
+```
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const addData = async () => {
+        Axios.post(postUrl, jsonData)
+    };
+    setFormSubmitted(true);
+    addData();
+}
+```
+
+Launching Json server
+
+```
+npx json-server --watch database/db.json --port 8000
+```
+
+- we use `--watch` to watch any changes made to the URL end points
+- then we have to tell where the json file with dummy data is located
+    and in my case it is a database folder in root directory and a file
+    named `db.json`  
+- we use `--port` to specify which port to use, by default json server
+    however when working with react we use port 3000 for react to listen
+    so we the use `--port PORT_NUMBER` to change the port. 
+
+Complete code
+```
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react'
+
+export default function AddProdcuts() {
+
+    // these URL will only work if you have launched you json server with the correct port number for example port 8000
+    const postUrl = 'http://localhost:8000/read-articles';
+    const returnUrl = 'http://localhost:8000/read-articles';
+
+    // all the states
+    const [author, setAuthor] = useState([]);
+    const [title, setTitle] = useState([]);
+    const [description, setDescription] = useState([]);
+    const [url, setURL] = useState([]);
+    const [urlToImage, setUrlToImage] = useState([]);
+    const [publishedAt, setPublishedAt] = useState([]);
+    const [content, setContent] = useState([]);
+
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    const jsonData = {
+        author: author,
+        title: title,
+        description: description,
+        url: url,
+        urlToImage: urlToImage,
+        publishedAt: publishedAt,
+        content: content,
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const addData = async () => {
+            Axios.post(postUrl, jsonData)
+        };
+        setFormSubmitted(true);
+        addData();
+    }
+
+    return (
+        <div className='items'>
+            <p className='display-1'>Add Products</p>
+
+            <form onSubmit={handleSubmit} method='POST' className='content w-75'>
+                <div className="mb-3">
+                    <label className="form-label">Author</label>
+                    <input className="form-control" type="text" value={author} onChange={e => setAuthor(e.target.value)} />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Title</label>
+                    <input className="form-control" type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Description</label>
+                    <input className="form-control" type="text" value={description} onChange={e => setDescription(e.target.value)} />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">URL</label>
+                    <input className="form-control" type="url" value={url} onChange={e => setURL(e.target.value)} />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Image</label>
+                    <input className="form-control" type="url" value={urlToImage} onChange={e => setUrlToImage(e.target.value)} />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Time of publication</label>
+                    <input className="form-control" type="date" value={publishedAt} onChange={e => setPublishedAt(e.target.value)} />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Content</label>
+                    <input className="form-control" type="text" value={content} onChange={e => setContent(e.target.value)} />
+                </div>
+                <button type="submit" className="btn btn-outline-success mt-4 btn-lg">Add Product</button>
+            </form>
+        </div>
+    )
+}
+
+```
