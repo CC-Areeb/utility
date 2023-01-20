@@ -73,7 +73,7 @@
     display: flex;
 }
 
-.paginateButton a
+.paginateButton a, #add_prod
 {
     padding: 5px 12px;
     border-radius: 5px;
@@ -88,7 +88,7 @@
     background-color: white;
 }
 
-.backBtn, .nextBtn 
+.backBtn, .nextBtn, #add_prod
 {
     text-decoration: none;
     color: #b58a51;
@@ -100,17 +100,6 @@
     text-decoration: none;
     color: #b58a51;
     background-color: white;
-}
-
-
-#pagination_items
-{
-    margin: var(--margin);
-}
-
-#loading_screen
-{
-    margin: var(--margin);
 }
 
 #loader_gif

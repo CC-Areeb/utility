@@ -27,28 +27,37 @@ import InvalidCodes from './InvalidCodes';
 import Reports from './Reports';
 import SiteSettings from './SiteSettings';
 
+// pages
+import AddProdcuts from '../pages/AddProdcuts';
+
 
 const route = createBrowserRouter(
     createRoutesFromElements(
-        <Route path='/' element={<Rootlayout />}>
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/manage-codes' element={<ManageCodes />} />
-            <Route path='/code-search' element={<CodeSearch />} />
-            <Route path='/disabled-codes' element={<DisabledCodes />} />
-            <Route path='/labels' element={<Labels />} />
-            <Route path='/batches' element={<Batches />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/roles' element={<Roles />} />
-            <Route path='/categories' element={<Categories />} />
-            <Route path='/beekeeper' element={<Beekeeper />} />
-            <Route path='/region' element={<Region />} />
-            <Route path='/emails' element={<Emails />} />
-            <Route path='/invalid-codes' element={<InvalidCodes />} />
-            <Route path='/reports' element={<Reports />} />
-            <Route path='/site-settings' element={<SiteSettings />} />
-            {/* <Route path='/logout' element={<Logout />} /> */}
-        </Route>
+        <>
+            {/* Side bar routes */}
+            <Route path='/' element={<Rootlayout />}>
+                <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/products' element={<Products />} />
+                <Route path='/manage-codes' element={<ManageCodes />} />
+                <Route path='/code-search' element={<CodeSearch />} />
+                <Route path='/disabled-codes' element={<DisabledCodes />} />
+                <Route path='/labels' element={<Labels />} />
+                <Route path='/batches' element={<Batches />} />
+                <Route path='/users' element={<Users />} />
+                <Route path='/roles' element={<Roles />} />
+                <Route path='/categories' element={<Categories />} />
+                <Route path='/beekeeper' element={<Beekeeper />} />
+                <Route path='/region' element={<Region />} />
+                <Route path='/emails' element={<Emails />} />
+                <Route path='/invalid-codes' element={<InvalidCodes />} />
+                <Route path='/reports' element={<Reports />} />
+                <Route path='/site-settings' element={<SiteSettings />} />
+                {/* <Route path='/logout' element={<Logout />} /> */}
+
+                {/* Pages */}
+                <Route path='/products/add' element={<AddProdcuts />}/>
+            </Route>
+        </>
     )
 );
 

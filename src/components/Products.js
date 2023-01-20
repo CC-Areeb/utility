@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
+import { NavLink } from 'react-router-dom';
 
 export default function Products() {
     const apiURL = `http://localhost:8000/read-articles`;
@@ -76,11 +77,9 @@ export default function Products() {
                     activeClassName={'paginateActive'}
                 />
             </div>
-
             <div>
-                <button>Add Product</button>
+                <NavLink className='text-decoration-none' id='add_prod' to='/products/add'>Add Product</NavLink>
             </div>
-
         </div>
     )
 }
