@@ -1,12 +1,8 @@
-import Axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { redirect } from 'react-router-dom';
+import { Axios } from 'axios';
+import React, { useState } from 'react'
 
-export default function AddProdcuts() {
+export default function EditProduct() {
 
-    const postUrl = 'http://localhost:8000/read-articles';
-
-    // all the states
     const [author, setAuthor] = useState([]);
     const [title, setTitle] = useState([]);
     const [description, setDescription] = useState([]);
@@ -15,27 +11,23 @@ export default function AddProdcuts() {
     const [publishedAt, setPublishedAt] = useState([]);
     const [content, setContent] = useState([]);
 
-    const jsonData = {
-        author: author,
-        title: title,
-        description: description,
-        url: url,
-        urlToImage: urlToImage,
-        publishedAt: publishedAt,
-        content: content,
-    };
+    // get all data
+    const allDataUrl = 'http://localhost:8000/read-articles';
+
+    // get single data
+    const singleDataUrl = 'http://localhost:8000/update-article';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const addData = async () => {
-            Axios.post(postUrl, jsonData)
+            Axios.post('', '')
         };
         addData();
     }
 
     return (
         <div className='items'>
-            <p className='display-1'>Add Products</p>
+            <p className='display-1'>Edit Products</p>
 
             <form onSubmit={handleSubmit} method='POST' className='content w-75'>
                 <div className="mb-3">

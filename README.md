@@ -335,5 +335,49 @@ export default function AddProdcuts() {
         </div>
     )
 }
+```
+
+### Breakdown
+
+First we understand the jsonData object
 
 ```
+const jsonData = {
+    author: author,
+    title: title,
+    description: description,
+    url: url,
+    urlToImage: urlToImage,
+    publishedAt: publishedAt,
+    content: content,
+};
+```
+- the names on the left are the json data value key names
+- the names on the right are the `setState` variable names
+
+
+**Json data**
+```
+{
+    "author": "Consectetur eum volu",
+    "title": "Ea voluptates invent",
+    "description": "Doloremque qui sunt",
+    "url": "Tenetur fuga Velit ",
+    "urlToImage": "Exercitationem eius ",
+    "publishedAt": "Cum voluptas alias a",
+    "content": "Et vero accusantium ",
+    "id": 2
+}
+```
+
+- Since we are using json server so the key names will be used as database tuple/column names.
+- So when we made the POST request, we made sure that these json keys are equal to the set state variables.
+
+
+**Set state function**
+- After equalling the set state variable to the json keys, we can now use the set state functions to detect changes in values
+```
+onChange={e => setAuthor(e.target.value)}
+```
+- This is a shorthand when using arrow functions, and by using this we get the events with it that'why we can call the setter function directly
+- this setter function is used to get the value of the input field and store in the db.json file. 

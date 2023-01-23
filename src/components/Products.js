@@ -20,10 +20,24 @@ export default function Products() {
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.url}>
-                <td>{state.title.slice(1, 10)}</td>
+                <td>{state.title.slice(0, 10)}</td>
                 <td>{state.author}</td>
-                <td>{state.description.slice(1, 10)}</td>
+                <td>{state.description.slice(0, 10)}</td>
                 <td>{state.publishedAt}</td>
+                <td>
+                    <NavLink to='/products/edit'>
+                        <button type="button" class="btn btn-outline-primary mx-2">
+                            Edit
+                            <i class="bi bi-pencil-square px-1" id='edit'></i>
+                        </button>
+                    </NavLink>
+                    <NavLink to='/products/delete'>
+                        <button type="button" class="btn btn-outline-danger mx-2">
+                            Delete
+                            <i class="bi bi-trash px-1" id='delete'></i>
+                        </button>
+                    </NavLink>
+                </td>
             </tr>
 
         });
@@ -56,6 +70,7 @@ export default function Products() {
                             <th scope="col">Category</th>
                             <th scope="col">Sku</th>
                             <th scope="col">Time of publication</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
