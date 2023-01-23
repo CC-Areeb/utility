@@ -5,7 +5,7 @@ import loader from '../utilities/loader.gif';
 import { NavLink } from 'react-router-dom';
 
 export default function Products() {
-    const apiURL = `http://localhost:8000/read-articles`;
+    const apiURL = 'http://localhost:8000/read-articles';
     const [state, setState] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
@@ -25,7 +25,7 @@ export default function Products() {
                 <td>{state.description.slice(0, 10)}</td>
                 <td>{state.publishedAt}</td>
                 <td>
-                    <NavLink to='/products/edit'>
+                    <NavLink to={`/products/edit?id=${state.id}`}>
                         <button type="button" class="btn btn-outline-primary mx-2">
                             Edit
                             <i class="bi bi-pencil-square px-1" id='edit'></i>
@@ -39,7 +39,6 @@ export default function Products() {
                     </NavLink>
                 </td>
             </tr>
-
         });
 
     useEffect(() => {
@@ -50,7 +49,6 @@ export default function Products() {
                 setState(response.data.map((e) => { return e }));
             });
         };
-
         dataFetch();
     }, []);
 
