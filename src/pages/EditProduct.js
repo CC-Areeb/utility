@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function EditProduct() {
 
@@ -27,9 +28,15 @@ export default function EditProduct() {
             });
     }, []);
 
+
+    // calling the navigate hook from react-router-dom
+    let navigate = useNavigate();
+
+
     function handleSubmit(event) {
         event.preventDefault();
         Axios.put(putUrl + urlID, formData);
+        navigate('/products');
     }
 
     return (

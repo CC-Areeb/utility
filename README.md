@@ -381,3 +381,34 @@ onChange={e => setAuthor(e.target.value)}
 ```
 - This is a shorthand when using arrow functions, and by using this we get the events with it that'why we can call the setter function directly
 - this setter function is used to get the value of the input field and store in the db.json file. 
+
+### Redirecting
+
+We can redirect the user after they have submitted a form with react-router-dom. For this we need to use the `useNavigate` hook
+
+```
+// calling the navigate hook from react-router-dom
+let navigate = useNavigate();
+```
+
+Now we can use this `navigate` variable and redirect to any page/link we want
+as shown.
+
+```
+// calling the navigate hook from react-router-dom
+let navigate = useNavigate();
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const addData = async () => {
+        Axios.post(postUrl, jsonData)
+        navigate('/products');
+    };
+    addData();
+    }
+```
+
+As you can see, we can navigate after `Axios` has applied the post method
+so when the button is clicked, the Axios fires the post method to save the
+data and then the redirect hook is fired to redirect the user to that URL
+end-point.

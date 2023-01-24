@@ -1,16 +1,6 @@
 {
   "read-articles": [
     {
-      "author": "Deserunt laborum con",
-      "title": "Harum quae facilis q",
-      "description": "Facere eaque aut sed",
-      "url": "https://www.qim.com",
-      "urlToImage": "https://www.nobe.us",
-      "publishedAt": "2022-05-27",
-      "content": "Natus ipsum ullamco ",
-      "id": 1
-    },
-    {
       "author": "Qui commodo ut error",
       "title": "Cillum occaecat et v",
       "description": "Eos ullamco neque n",
@@ -19,26 +9,6 @@
       "publishedAt": "2006-09-22",
       "content": "Exercitationem labor",
       "id": 2
-    },
-    {
-      "author": "Non commodo molestia",
-      "title": "Dolor ea qui est ea",
-      "description": "Minim sed expedita s",
-      "url": "https://www.xipovakelaw.cm",
-      "urlToImage": "https://www.xagaqe.in",
-      "publishedAt": "1973-06-19",
-      "content": "Quo natus soluta tem",
-      "id": 3
-    },
-    {
-      "author": "Ea tempor distinctio",
-      "title": "Dolore soluta qui fu",
-      "description": "Itaque laborum persp",
-      "url": "https://www.zufezyqyxoh.info",
-      "urlToImage": "https://www.jolodezygigoj.com",
-      "publishedAt": "1976-09-23",
-      "content": "Alias est laborum R",
-      "id": 4
     }
   ]
 }

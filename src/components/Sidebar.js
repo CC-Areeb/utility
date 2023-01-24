@@ -58,6 +58,7 @@ const route = createBrowserRouter(
                 {/* Pages */}
                 <Route path='/products/add' element={<AddProdcuts />}/>
                 <Route path='/products/edit' element={<EditProduct />}/>
+                <Route path='/products/delete' element={<Products />} />
             </Route>
         </>
     )

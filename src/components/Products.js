@@ -2,20 +2,29 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 export default function Products() {
+    // URLs
     const apiURL = 'http://localhost:8000/read-articles';
+    const deleteURL = 'http://localhost:8000/read-articles/';
+
+    const urlID = new URLSearchParams(window.location.search).get('id');
+
+    // use states
     const [state, setState] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
+
 
     // Basic info for pagination
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
 
-    // function for displaying data
+
+
+    // displaying data
     const displayData = state
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
@@ -26,17 +35,15 @@ export default function Products() {
                 <td>{state.publishedAt}</td>
                 <td>
                     <NavLink to={`/products/edit?id=${state.id}`}>
-                        <button type="button" class="btn btn-outline-primary mx-2">
+                        <button type="button" className="btn btn-outline-primary mx-2">
                             Edit
-                            <i class="bi bi-pencil-square px-1" id='edit'></i>
+                            <i className="bi bi-pencil-square px-1" id='edit'></i>
                         </button>
                     </NavLink>
-                    <NavLink to='/products/delete'>
-                        <button type="button" class="btn btn-outline-danger mx-2">
-                            Delete
-                            <i class="bi bi-trash px-1" id='delete'></i>
-                        </button>
-                    </NavLink>
+                    <button type="button" className="btn btn-outline-danger mx-2">
+                        Delete
+                        <i className="bi bi-trash px-1" id='delete'></i>
+                    </button>
                 </td>
             </tr>
         });
