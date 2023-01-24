@@ -29,6 +29,7 @@ import SiteSettings from './SiteSettings';
 
 // pages
 import AddProdcuts from '../pages/AddProdcuts';
+import EditProduct from '../pages/EditProduct';
 
 
 const route = createBrowserRouter(
@@ -56,6 +57,8 @@ const route = createBrowserRouter(
 
                 {/* Pages */}
                 <Route path='/products/add' element={<AddProdcuts />}/>
+                <Route path='/products/edit' element={<EditProduct />}/>
+                <Route path='/products/delete' element={<Products />} />
             </Route>
         </>
     )

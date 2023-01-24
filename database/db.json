@@ -1,110 +1,14 @@
 {
   "read-articles": [
     {
-      "id": 1,
-      "author": "Sarah Krouse",
-      "title": "Netflix Co-Founder Reed Hastings Transitions to Chairman Role, With Greg Peters Elevated as Co-CEO - The Wall Street Journal",
-      "description": "<ol><li>Netflix Co-Founder Reed Hastings Transitions to Chairman Role, With Greg Peters Elevated as Co-CEO  The Wall Street Journal\r\n</li><li>Netflix founder Reed Hastings is giving up his CEO role  CNBC\r\n</li><li>Netflix co-founder Reed Hastings to step down…",
-      "url": "https://www.wsj.com/articles/netflix-nflx-q4-earnings-report-2022-11674083032",
-      "urlToImage": "https://images.wsj.net/im-706744/social",
-      "publishedAt": "2023-01-20T00:49:00Z",
-      "content": "Netflix Inc. said co-founder Reed Hastings has stepped down as co-chief executive and will become executive chairman, in a leadership shuffle that comes as the streaming giant beat its own forecast f… [+227 chars]"
-    },
-    {
-      "author": "Consectetur eum volu",
-      "title": "Ea voluptates invent",
-      "description": "Doloremque qui sunt",
-      "url": "Tenetur fuga Velit ",
-      "urlToImage": "Exercitationem eius ",
-      "publishedAt": "Cum voluptas alias a",
-      "content": "Et vero accusantium ",
+      "author": "Qui commodo ut error",
+      "title": "Cillum occaecat et v",
+      "description": "Eos ullamco neque n",
+      "url": "https://www.qixodixe.in",
+      "urlToImage": "https://www.xivobygup.ca",
+      "publishedAt": "2006-09-22",
+      "content": "Exercitationem labor",
       "id": 2
-    },
-    {
-      "author": "Eum officia nesciunt",
-      "title": "Harum ut consequat ",
-      "description": "Voluptatibus non id ",
-      "url": "https://www.rake.me.uk",
-      "urlToImage": "https://www.vixujufidivi.co.uk",
-      "publishedAt": "1999-01-20",
-      "content": "Incidunt facilis no",
-      "id": 3
-    },
-    {
-      "author": "Pariatur Animi cor",
-      "title": "Rerum qui est inven",
-      "description": "Et ex nobis doloribu",
-      "url": "https://www.gaze.cc",
-      "urlToImage": "https://www.jizunejugixugev.me",
-      "publishedAt": "1982-02-19",
-      "content": "Aspernatur sunt et e",
-      "id": 4
-    },
-    {
-      "author": "Rerum cumque et sint",
-      "title": "Est ipsum dicta con",
-      "description": "Numquam atque labore",
-      "url": "https://www.lahez.org",
-      "urlToImage": "https://www.nerixaj.us",
-      "publishedAt": "1978-08-07",
-      "content": "Et earum est officia",
-      "id": 5
-    },
-    {
-      "author": [],
-      "title": [],
-      "description": [],
-      "url": [],
-      "urlToImage": [],
-      "publishedAt": [],
-      "content": [],
-      "id": 6
-    },
-    {
-      "author": "Et similique porro e",
-      "title": "Sit aut dolor deser",
-      "description": "Minim incidunt veni",
-      "url": "https://www.lixibahoge.org",
-      "urlToImage": "https://www.jeraraso.org.au",
-      "publishedAt": "2008-05-03",
-      "content": "Mollitia quae ex exe",
-      "id": 7
-    }
-  ],
-  "add-article": [
-    {
-      "id": 1,
-      "author": "Talal Ansari",
-      "title": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects - The Wall Street Journal",
-      "description": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects  The Wall Street JournalView Full Coverage on Google News",
-      "url": "https://www.wsj.com/articles/galactic-panorama-of-milky-way-details-3-3-billion-celestial-objects-11674169406",
-      "urlToImage": "https://images.wsj.net/im-706929/social",
-      "publishedAt": "2023-01-19T23:03:00Z",
-      "content": "Astronomers have identified 3.32 billion celestial objects in the Milky Way in unprecedented detail.\r\nThe galactic panorama of stars, gas, dust and a supermassive black hole known as Sagittarius A* w… [+269 chars]"
-    }
-  ],
-  "update-article": [
-    {
-      "id": 1,
-      "author": "Talal Ansari",
-      "title": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects - The Wall Street Journal",
-      "description": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects  The Wall Street JournalView Full Coverage on Google News",
-      "url": "https://www.wsj.com/articles/galactic-panorama-of-milky-way-details-3-3-billion-celestial-objects-11674169406",
-      "urlToImage": "https://images.wsj.net/im-706929/social",
-      "publishedAt": "2023-01-19T23:03:00Z",
-      "content": "Astronomers have identified 3.32 billion celestial objects in the Milky Way in unprecedented detail.\r\nThe galactic panorama of stars, gas, dust and a supermassive black hole known as Sagittarius A* w… [+269 chars]"
-    }
-  ],
-  "delete-article": [
-    {
-      "id": 1,
-      "author": "Talal Ansari",
-      "title": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects - The Wall Street Journal",
-      "description": "'Galactic Panorama' of Milky Way Details 3.3 Billion Celestial Objects  The Wall Street JournalView Full Coverage on Google News",
-      "url": "https://www.wsj.com/articles/galactic-panorama-of-milky-way-details-3-3-billion-celestial-objects-11674169406",
-      "urlToImage": "https://images.wsj.net/im-706929/social",
-      "publishedAt": "2023-01-19T23:03:00Z",
-      "content": "Astronomers have identified 3.32 billion celestial objects in the Milky Way in unprecedented detail.\r\nThe galactic panorama of stars, gas, dust and a supermassive black hole known as Sagittarius A* w… [+269 chars]"
     }
   ]
 }

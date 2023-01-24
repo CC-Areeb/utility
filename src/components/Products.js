@@ -2,30 +2,50 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 export default function Products() {
-    const apiURL = `http://localhost:8000/read-articles`;
+    // URLs
+    const apiURL = 'http://localhost:8000/read-articles';
+    const deleteURL = 'http://localhost:8000/read-articles/';
+
+    const urlID = new URLSearchParams(window.location.search).get('id');
+
+    // use states
     const [state, setState] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
+
 
     // Basic info for pagination
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
 
-    // function for displaying data
+
+
+    // displaying data
     const displayData = state
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.url}>
-                <td>{state.title.slice(1, 10)}</td>
+                <td>{state.title.slice(0, 10)}</td>
                 <td>{state.author}</td>
-                <td>{state.description.slice(1, 10)}</td>
+                <td>{state.description.slice(0, 10)}</td>
                 <td>{state.publishedAt}</td>
+                <td>
+                    <NavLink to={`/products/edit?id=${state.id}`}>
+                        <button type="button" className="btn btn-outline-primary mx-2">
+                            Edit
+                            <i className="bi bi-pencil-square px-1" id='edit'></i>
+                        </button>
+                    </NavLink>
+                    <button type="button" className="btn btn-outline-danger mx-2">
+                        Delete
+                        <i className="bi bi-trash px-1" id='delete'></i>
+                    </button>
+                </td>
             </tr>
-
         });
 
     useEffect(() => {
@@ -36,7 +56,6 @@ export default function Products() {
                 setState(response.data.map((e) => { return e }));
             });
         };
-
         dataFetch();
     }, []);
 
@@ -56,6 +75,7 @@ export default function Products() {
                             <th scope="col">Category</th>
                             <th scope="col">Sku</th>
                             <th scope="col">Time of publication</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
