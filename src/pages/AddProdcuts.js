@@ -1,5 +1,6 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 export default function AddProdcuts() {
 
@@ -13,7 +14,7 @@ export default function AddProdcuts() {
     const [urlToImage, setUrlToImage] = useState([]);
     const [publishedAt, setPublishedAt] = useState([]);
     const [content, setContent] = useState([]);
-
+    
     const jsonData = {
         author: author,
         title: title,
@@ -23,11 +24,15 @@ export default function AddProdcuts() {
         publishedAt: publishedAt,
         content: content,
     };
+    
+    // calling the navigate hook from react-router-dom
+    let navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const addData = async () => {
             Axios.post(postUrl, jsonData)
+            navigate('/products');
         };
         addData();
     }
