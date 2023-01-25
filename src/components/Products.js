@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
@@ -18,14 +18,25 @@ export default function Products() {
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
-    // calling the navigate hook from react-router-dom
-    let navigate = useNavigate();
-
     // Functions
     function handleDelete(id) {
-        Axios.delete(apiURL + '/' + id);
-        navigate('/products');
+        Axios.delete(apiURL + '/' + id)
+            .then(response => {
+                setState(data => data.filter(item => item.id !== id));
+            });
     }
+
+    useEffect(() => {
+        const dataFetch = async () => {
+            setLoading(true);
+            Axios.get(apiURL).then(function (response) {
+                setLoading(false);
+                setState(response.data.map((e) => { return e }));
+            });
+        };
+        dataFetch();
+    }, []);
+
 
     // displaying data
     const displayData = state
@@ -51,16 +62,6 @@ export default function Products() {
             </tr>
         });
 
-    useEffect(() => {
-        const dataFetch = async () => {
-            setLoading(true);
-            Axios.get(apiURL).then(function (response) {
-                setLoading(false);
-                setState(response.data.map((e) => { return e }));
-            });
-        };
-        dataFetch();
-    }, []);
 
     const pageCount = Math.ceil(state.length / dataPerPage);
     const changePage = ({ selected }) => {
