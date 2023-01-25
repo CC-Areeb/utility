@@ -12,7 +12,6 @@ export default function Products() {
     // use states
     const [state, setState] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [data, setdata] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
 
     // Basic info for pagination
@@ -25,7 +24,7 @@ export default function Products() {
     // Functions
     function handleDelete(id) {
         Axios.delete(apiURL + '/' + id);
-        setdata(true)
+        window.location.reload(false);
     }
 
     useEffect(() => {
@@ -37,7 +36,7 @@ export default function Products() {
             });
         };
         dataFetch();
-    }, [data]);
+    }, []);
 
 
     // displaying data
