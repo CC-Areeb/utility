@@ -24,8 +24,20 @@ export default function Products() {
     // Functions
     function handleDelete(id) {
         Axios.delete(apiURL + '/' + id);
-        navigate('/products');
+        window.location.reload(true);
     }
+
+    useEffect(() => {
+        const dataFetch = async () => {
+            setLoading(true);
+            Axios.get(apiURL).then(function (response) {
+                setLoading(false);
+                setState(response.data.map((e) => { return e }));
+            });
+        };
+        dataFetch();
+    }, []);
+
 
     // displaying data
     const displayData = state
@@ -51,16 +63,6 @@ export default function Products() {
             </tr>
         });
 
-    useEffect(() => {
-        const dataFetch = async () => {
-            setLoading(true);
-            Axios.get(apiURL).then(function (response) {
-                setLoading(false);
-                setState(response.data.map((e) => { return e }));
-            });
-        };
-        dataFetch();
-    }, []);
 
     const pageCount = Math.ceil(state.length / dataPerPage);
     const changePage = ({ selected }) => {
