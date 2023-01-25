@@ -7,21 +7,24 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom';
 export default function Products() {
     // URLs
     const apiURL = 'http://localhost:8000/read-articles';
-    const deleteURL = 'http://localhost:8000/read-articles/';
-
-    const urlID = new URLSearchParams(window.location.search).get('id');
 
     // use states
     const [state, setState] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
 
-
     // Basic info for pagination
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
+    // calling the navigate hook from react-router-dom
+    let navigate = useNavigate();
 
+    function handleDelete(e)
+    {
+        Axios.delete('http://localhost:8000/read-articles/' + e);
+        navigate('/products');
+    }
 
 
     // displaying data
@@ -40,7 +43,7 @@ export default function Products() {
                             <i className="bi bi-pencil-square px-1" id='edit'></i>
                         </button>
                     </NavLink>
-                    <button type="button" className="btn btn-outline-danger mx-2">
+                    <button type="button" className="btn btn-outline-danger mx-2" onClick={() => handleDelete(state.id)}>
                         Delete
                         <i className="bi bi-trash px-1" id='delete'></i>
                     </button>
