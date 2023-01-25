@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
@@ -18,13 +18,12 @@ export default function Products() {
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
-    // calling the navigate hook from react-router-dom
-    let navigate = useNavigate();
-
     // Functions
     function handleDelete(id) {
-        Axios.delete(apiURL + '/' + id);
-        window.location.reload(false);
+        Axios.delete(apiURL + '/' + id)
+            .then(response => {
+                setState(data => data.filter(item => item.id !== id));
+            });
     }
 
     useEffect(() => {

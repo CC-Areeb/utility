@@ -1,3 +1,24 @@
 {
-  "read-articles": []
+  "read-articles": [
+    {
+      "author": "Anim suscipit neque ",
+      "title": "Nam ad architecto co",
+      "description": "Sed consectetur bla",
+      "url": "https://www.gyguryxygines.cm",
+      "urlToImage": "https://www.suqadyku.me",
+      "publishedAt": "1983-10-19",
+      "content": "Impedit fugiat proi",
+      "id": 1
+    },
+    {
+      "author": "Iure nobis corporis ",
+      "title": "Reprehenderit culpa ",
+      "description": "Voluptate non delect",
+      "url": "https://www.qygip.com",
+      "urlToImage": "https://www.herymiho.com",
+      "publishedAt": "1991-11-21",
+      "content": "Maiores at consectet",
+      "id": 2
+    }
+  ]
 }
