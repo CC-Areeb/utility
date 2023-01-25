@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export default function Products() {
     // URLs
     const apiURL = 'http://localhost:8000/read-articles';
+    const searchUrl = "http://localhost:8000/read-articles?q=";
 
     // use states
     const [state, setState] = useState([]);
@@ -20,21 +21,20 @@ export default function Products() {
     // calling the navigate hook from react-router-dom
     let navigate = useNavigate();
 
-    function handleDelete(e)
-    {
-        Axios.delete('http://localhost:8000/read-articles/' + e);
+    // Functions
+    function handleDelete(id) {
+        Axios.delete(apiURL + '/' + id);
         navigate('/products');
     }
-
 
     // displaying data
     const displayData = state
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.url}>
-                <td>{state.title.slice(0, 10)}</td>
+                <td>{state.title}</td>
                 <td>{state.author}</td>
-                <td>{state.description.slice(0, 10)}</td>
+                <td>{state.description}</td>
                 <td>{state.publishedAt}</td>
                 <td>
                     <NavLink to={`/products/edit?id=${state.id}`}>
@@ -67,9 +67,24 @@ export default function Products() {
         setPageNumber(selected);
     }
 
+
+    // Search filter
+    const [search, setSearch] = useState("");
+    const handleSearchChange = e => {
+        setSearch(e.target.value);
+        Axios.get(searchUrl + e.target.value)
+            .then((data) => {
+                setState(data.data.map((e) => { return e }));
+            });
+    };
+
     return (
         <div className='items'>
             <p className='display-1'>Products</p>
+            <div className="form-floating my-4" id='product_search_bar'>
+                <input type="text" className="form-control" id="prod_search" placeholder="Search..." value={search} onChange={handleSearchChange} />
+                <label htmlFor="prod_search">Search ...</label>
+            </div>
             <div className='text-center' id='prod_table'>
                 <table className="table">
                     <thead>
