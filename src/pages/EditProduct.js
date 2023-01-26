@@ -5,19 +5,18 @@ import { useNavigate } from 'react-router-dom';
 export default function EditProduct() {
 
     // URLs
-    const putUrl = 'http://localhost:8000/read-articles/';
-    const getURL = 'http://localhost:8000/read-articles/';
+    const putUrl = 'http://localhost:8000/products/';
+    const getURL = 'http://localhost:8000/products/';
 
     // get the URL parameter for id
     const urlID = new URLSearchParams(window.location.search).get('id');
 
 
     const [formData, setFormData] = useState({
-        "author": "",
         "title": "",
+        "category": "",
         "description": "",
-        "url": "",
-        "urlToImage": "",
+        "sku": "",
         "content": ""
     });
 
@@ -43,64 +42,48 @@ export default function EditProduct() {
         <div className='items'>
             <p className='display-1'>Edit Products</p>
             <form onSubmit={handleSubmit} className='content w-75'>
-                <div className="mb-3">
-                    <label className="form-label">Author</label>
+                <div className="mb-3 form-floating">
                     <input
-                        type="text"
-                        value={formData.author}
-                        className="form-control"
-                        onChange={event => setFormData({ ...formData, author: event.target.value })}
-                    />
-                </div>
-
-                <div className="mb-3">
-                    <label className="form-label">Title</label>
-                    <input
+                        placeholder='Title'
                         type="text"
                         value={formData.title}
                         className="form-control"
                         onChange={event => setFormData({ ...formData, title: event.target.value })}
                     />
+                    <label className="form-label">Title</label>
                 </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Description</label>
+                <div className="mb-3 form-floatings">
                     <input
+                        placeholder='Category'
                         type="text"
-                        value={formData.description}
+                        value={formData.category}
                         className="form-control"
-                        onChange={event => setFormData({ ...formData, description: event.target.value })}
+                        onChange={event => setFormData({ ...formData, category: event.target.value })}
                     />
+                    <label className="form-label">Category</label>
                 </div>
 
-                <div className="mb-3">
-                    <label className="form-label">URL</label>
+                <div className="mb-3 form-floating">
                     <input
+                        placeholder='SKU'
                         type="text"
-                        value={formData.url}
+                        value={formData.sku}
                         className="form-control"
-                        onChange={event => setFormData({ ...formData, url: event.target.value })}
+                        onChange={event => setFormData({ ...formData, sku: event.target.value })}
                     />
+                    <label className="form-label">SKU</label>
                 </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Image</label>
+                <div className="mb-3 form-floating">
                     <input
-                        type="text"
-                        value={formData.urlToImage}
-                        className="form-control"
-                        onChange={event => setFormData({ ...formData, urlToImage: event.target.value })}
-                    />
-                </div>
-
-                <div className="mb-3">
-                    <label className="form-label">Content</label>
-                    <input
+                        placeholder='Content'
                         type="text"
                         value={formData.content}
                         className="form-control"
                         onChange={event => setFormData({ ...formData, content: event.target.value })}
                     />
+                    <label className="form-label">Content</label>
                 </div>
 
                 <button type="submit" className="btn btn-outline-success mt-4 btn-lg">Update</button>

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Products() {
     // URLs
-    const apiURL = 'http://localhost:8000/read-articles';
-    const searchUrl = "http://localhost:8000/read-articles?q=";
+    const apiURL = 'http://localhost:8000/products';
+    const searchUrl = "http://localhost:8000/products?q=";
 
     // use states
     const [state, setState] = useState([]);
@@ -44,9 +44,10 @@ export default function Products() {
         .map(state => {
             return <tr key={state.url}>
                 <td>{state.title}</td>
-                <td>{state.author}</td>
+                <td>{state.category}</td>
                 <td>{state.description}</td>
-                <td>{state.publishedAt}</td>
+                <td>{state.sku}</td>
+                <td>{state.content}</td>
                 <td>
                     <NavLink to={`/products/edit?id=${state.id}`}>
                         <button type="button" className="btn btn-outline-primary mx-2">
@@ -82,7 +83,7 @@ export default function Products() {
     return (
         <div className='items'>
             <p className='display-1'>Products</p>
-            <div className="form-floating my-4" id='product_search_bar'>
+            <div className="form-floating my-4 w-25" id='product_search_bar'>
                 <input type="text" className="form-control" id="prod_search" placeholder="Search..." value={search} onChange={handleSearchChange} />
                 <label htmlFor="prod_search">Search ...</label>
             </div>
@@ -92,8 +93,9 @@ export default function Products() {
                         <tr>
                             <th scope="col">Title</th>
                             <th scope="col">Category</th>
+                            <th scope="col">description</th>
                             <th scope="col">Sku</th>
-                            <th scope="col">Time of publication</th>
+                            <th scope="col">Content</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>

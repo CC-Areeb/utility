@@ -1,23 +1,19 @@
 {
-  "read-articles": [
+  "products": [
     {
-      "author": "Anim suscipit neque ",
-      "title": "Nam ad architecto co",
-      "description": "Sed consectetur bla",
-      "url": "https://www.gyguryxygines.cm",
-      "urlToImage": "https://www.suqadyku.me",
-      "publishedAt": "1983-10-19",
-      "content": "Impedit fugiat proi",
+      "title": "Magnam magnam laboru",
+      "category": "Quia eiusmod sed dol",
+      "description": "Laborum Ducimus no",
+      "sku": "Sunt blanditiis volu",
+      "content": "Elit elit sit et d",
       "id": 1
     },
     {
-      "author": "Iure nobis corporis ",
-      "title": "Reprehenderit culpa ",
-      "description": "Voluptate non delect",
-      "url": "https://www.qygip.com",
-      "urlToImage": "https://www.herymiho.com",
-      "publishedAt": "1991-11-21",
-      "content": "Maiores at consectet",
+      "title": "Enim inventore animi",
+      "category": "In alias maiores at ",
+      "description": "Tempora sapiente dui",
+      "sku": "Consequatur rerum i",
+      "content": "Et laboriosam minim",
       "id": 2
     }
   ]
