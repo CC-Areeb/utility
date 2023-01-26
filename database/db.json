@@ -1,28 +1,20 @@
 {
   "products": [
     {
-      "title": "C",
-      "category": "Nemo ut in ad tempor",
-      "description": "Et quia omnis dolore",
-      "sku": "Nulla aut quis iure ",
-      "content": "Aliqua Duis in qui ",
-      "id": 3
+      "title": "A",
+      "category": "Amet explicabo Ut ",
+      "description": "Est nisi vel ipsum ",
+      "sku": "Aut quod veritatis s",
+      "content": "Quisquam doloremque ",
+      "id": 1
     },
     {
       "title": "B",
-      "category": "Pariatur Omnis anim",
-      "description": "Cupidatat adipisci c",
-      "sku": "Dolores voluptatem m",
-      "content": "Est eveniet consequ",
-      "id": 4
-    },
-    {
-      "title": "A",
-      "category": "Non natus qui mollit",
-      "description": "Cum unde ea exceptur",
-      "sku": "Illo accusantium ver",
-      "content": "Necessitatibus sed a",
-      "id": 5
+      "category": "Exercitationem recus",
+      "description": "Exercitation volupta",
+      "sku": "Enim amet debitis f",
+      "content": "Occaecat sit volupt",
+      "id": 2
     }
   ]
 }

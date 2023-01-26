@@ -8,7 +8,6 @@ export default function Products() {
     // URLs
     const apiURL = 'http://localhost:8000/products';
     const searchUrl = "http://localhost:8000/products?q=";
-    const sortingUrl = "http://localhost:8000/products?_sort=title,category,description,sku,content&_order=desc,asc"
 
     // use states
     const [state, setState] = useState([]);
@@ -34,19 +33,12 @@ export default function Products() {
 
 
     // Sorting data after get request
-    const sortData = (sortBy) => {
-        const sortedData = [...state].sort((a, b) => {
-            if (a[sortBy] > b[sortBy]) {
-                return 1;
-            } else if (a[sortBy] < b[sortBy]) {
-                return -1;
-            } else {
-                return 0;
-            }
-        });
-        setState(sortedData)
+    const [isToggled, setisToggled] = useState(false);
+    function toggleClick() {
+        setisToggled(!isToggled);
+        const sortedDataDescending = state.sort((a, b) => -1);
+        setState(sortedDataDescending)
     }
-
 
     // Delete request
     function handleDelete(id) {
@@ -112,12 +104,12 @@ export default function Products() {
                 <table className="table">
                     <thead>
                         <tr id='product_main_table'>
-                            <th onClick={() => sortData('title')}  scope="col" className='border prod_table_head'>Title</th>
-                            <th onClick={() => sortData('category')} scope="col" className='border prod_table_head'>Category</th>
-                            <th onClick={() => sortData('description')} scope="col" className='border prod_table_head'>Description</th>
-                            <th onClick={() => sortData('sku')} scope="col" className='border prod_table_head'>SKU</th>
-                            <th onClick={() => sortData('content')} scope="col" className='border prod_table_head'>Content</th>
-                            <th scope="col" className='border'>Actions</th>
+                            <th onClick={toggleClick} scope="col" className='border prod_table_head'>Title</th>
+                            <th onClick={toggleClick} scope="col" className='border prod_table_head'>Category</th>
+                            <th onClick={toggleClick} scope="col" className='border prod_table_head'>Description</th>
+                            <th onClick={toggleClick} scope="col" className='border prod_table_head'>SKU</th>
+                            <th onClick={toggleClick} scope="col" className='border prod_table_head'>Content</th>
+                            <th onClick={toggleClick} scope="col" className='border'>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
