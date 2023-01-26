@@ -106,3 +106,8 @@
     color: #b58a51;
     background-color: white;
 }
+
+.prod_table_head:hover
+{
+    cursor: pointer;
+}

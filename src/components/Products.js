@@ -8,6 +8,7 @@ export default function Products() {
     // URLs
     const apiURL = 'http://localhost:8000/products';
     const searchUrl = "http://localhost:8000/products?q=";
+    const sortingUrl = "http://localhost:8000/products?_sort=title,category,description,sku,content&_order=desc,asc"
 
     // use states
     const [state, setState] = useState([]);
@@ -18,14 +19,8 @@ export default function Products() {
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
-    // Delete function
-    function handleDelete(id) {
-        Axios.delete(apiURL + '/' + id)
-            .then(response => {
-                setState(data => data.filter(item => item.id !== id));
-            });
-    }
 
+    // Get request
     useEffect(() => {
         const dataFetch = async () => {
             setLoading(true);
@@ -38,17 +33,41 @@ export default function Products() {
     }, []);
 
 
+    // Sorting data after get request
+    const sortData = (sortBy) => {
+        const sortedData = [...state].sort((a, b) => {
+            if (a[sortBy] > b[sortBy]) {
+                return 1;
+            } else if (a[sortBy] < b[sortBy]) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        setState(sortedData)
+    }
+
+
+    // Delete request
+    function handleDelete(id) {
+        Axios.delete(apiURL + '/' + id)
+            .then(() => {
+                setState(data => data.filter(item => item.id !== id));
+            });
+    }
+
+
     // displaying data
     const displayData = state
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.url}>
-                <td>{state.title}</td>
-                <td>{state.category}</td>
-                <td>{state.description}</td>
-                <td>{state.sku}</td>
-                <td>{state.content}</td>
-                <td>
+                <td className='border'>{state.title}</td>
+                <td className='border'>{state.category}</td>
+                <td className='border'>{state.description}</td>
+                <td className='border'>{state.sku}</td>
+                <td className='border'>{state.content}</td>
+                <td className='border'>
                     <NavLink to={`/products/edit?id=${state.id}`}>
                         <button type="button" className="btn btn-outline-primary mx-2">
                             Edit
@@ -64,6 +83,7 @@ export default function Products() {
         });
 
 
+    // calculation for pagination
     const pageCount = Math.ceil(state.length / dataPerPage);
     const changePage = ({ selected }) => {
         setPageNumber(selected);
@@ -80,6 +100,7 @@ export default function Products() {
             });
     };
 
+
     return (
         <div className='items'>
             <p className='display-1'>Products</p>
@@ -90,13 +111,13 @@ export default function Products() {
             <div className='text-center' id='prod_table'>
                 <table className="table">
                     <thead>
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">description</th>
-                            <th scope="col">Sku</th>
-                            <th scope="col">Content</th>
-                            <th scope="col">Actions</th>
+                        <tr id='product_main_table'>
+                            <th onClick={() => sortData('title')}  scope="col" className='border prod_table_head'>Title</th>
+                            <th onClick={() => sortData('category')} scope="col" className='border prod_table_head'>Category</th>
+                            <th onClick={() => sortData('description')} scope="col" className='border prod_table_head'>Description</th>
+                            <th onClick={() => sortData('sku')} scope="col" className='border prod_table_head'>SKU</th>
+                            <th onClick={() => sortData('content')} scope="col" className='border prod_table_head'>Content</th>
+                            <th scope="col" className='border'>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

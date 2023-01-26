@@ -20,6 +20,7 @@ export default function EditProduct() {
         "content": ""
     });
 
+    // Get request for 1 single data
     useEffect(() => {
         Axios.get(getURL + urlID)
             .then(response => {
@@ -32,6 +33,7 @@ export default function EditProduct() {
     let navigate = useNavigate();
 
 
+    // Put request for updating
     function handleSubmit(event) {
         event.preventDefault();
         Axios.put(putUrl + urlID, formData);
