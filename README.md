@@ -382,6 +382,44 @@ onChange={e => setAuthor(e.target.value)}
 - This is a shorthand when using arrow functions, and by using this we get the events with it that'why we can call the setter function directly
 - this setter function is used to get the value of the input field and store in the db.json file. 
 
+
+### PUT/PATCH request
+This type of request is used to update the previously stored data and change the values.
+
+- The first step is to get the full data of 1 single entity
+
+    ```
+    useEffect(() => {
+    Axios.get(getURL)
+        .then(response => {
+            setFormData(response.data);
+        });
+    }, []);
+    ```
+
+- Next we have to get the id of that 1 single entity because json server uses the id property to distinguish entities
+
+    ```
+    // get the URL parameter for id
+    const urlID = new URLSearchParams(window.location.search).get('id');
+    ```
+
+- After getting the id of that single entity, we can now pass that in the get request we made earlier
+
+    ```
+    Axios.get(getURL + urlID)
+    ```
+
+- Once we have got the id, we can now proceed with the `put` or `patch` method to update
+
+    ```
+    function handleSubmit(event) {
+        event.preventDefault();
+        Axios.put(putUrl + urlID, formData);
+        navigate('/products');
+    }
+    ```
+
 ### Redirecting
 
 We can redirect the user after they have submitted a form with react-router-dom. For this we need to use the `useNavigate` hook
@@ -412,3 +450,103 @@ As you can see, we can navigate after `Axios` has applied the post method
 so when the button is clicked, the Axios fires the post method to save the
 data and then the redirect hook is fired to redirect the user to that URL
 end-point.
+
+### Delet request
+
+Like we can perform `GET`, `POST` and `PUT/PATCH` requests, we can also apply a `DELETE` request to remove data from the json file.
+
+- To delete items, we have to use the `delete()` method provided by Axios as shown below
+
+    ``` 
+    Axios.delete(apiURL + '/' + id)
+    ```
+- Now this method delete but only using this will delete the data but won't show the updated table data in the scereen and for that you need to update the state when the data is deleted.
+
+    ```
+    Axios.delete(apiURL + '/' + id)
+        .then(response => {
+            setState(data => data.filter(item => item.id !== id));
+        });
+    ```
+- Now the main thing is to pass the id when the button is clicked and that can be done in the HTML using the `onClick={}` event and pass your function in this event with the id parameter that you are already fetching as shown
+
+    ```
+    <!-- Fetching the complete data -->
+
+    const apiURL = 'http://localhost:8000/read-articles';
+    const [state, setState] = useState([]);
+
+    useEffect(() => {
+        const dataFetch = async () => {
+            setLoading(true);
+            Axios.get(apiURL).then(function (response) {
+                setLoading(false);
+                setState(response.data.map((e) => { return e }));
+            });
+        };
+        dataFetch();
+    }, []);
+
+
+    <!-- Template for displaying data -->
+    
+    const displayData = state
+
+        .map(state => {
+            return <tr key={state.url}>
+                <td>{state.title}</td>
+                <td>{state.author}</td>
+                <td>{state.description}</td>
+                <td>{state.publishedAt}</td>
+                <td>
+                    <NavLink to={`/products/edit?id=${state.id}`}>
+                        <button type="button" className="bt btn-outline-primary mx-2">
+                            Edit
+                            <i className="bi bi-pencil-square px-1" id='edit'></i>
+                        </button>
+                    </NavLink>
+                    <button type="button" className="btn btn-outline-danger mx-2" onClick={() => handleDelete(state.id)}>
+                        Delete
+                        <i className="bi bi-trash px-1" id='delete'></i>
+                    </button>
+                </td>
+            </tr>
+        });
+
+
+
+    <!-- Delete function -->
+
+    function handleDelete(id) {
+        Axios.delete(apiURL + '/' + id)
+            .then(response => {
+                setState(data => data.filter(item => item.id !== id));
+            });
+    }
+
+    ```
+
+
+### Full text searching
+
+Json server also provides many features, one such feature is the ability to find a text from a big collection of data. With react state management we can use this feature to find text from the table.
+
+```
+<!-- Search URL -->
+
+const searchUrl = "http://localhost:8000/read-articles?q=";
+
+
+<!-- Search filter -->
+
+const [search, setSearch] = useState("");
+const handleSearchChange = e => {
+    setSearch(e.target.value);
+    Axios.get(searchUrl + e.target.value)
+        .then((data) => {
+            setState(data.data.map((e) => { return e }));
+        });
+};
+```
+
+In the json server guide, the `q=` is used as a search filter parameter so we just adjust our api url by adding a small query parameter to it.

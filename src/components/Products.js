@@ -18,7 +18,7 @@ export default function Products() {
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
-    // Functions
+    // Delete function
     function handleDelete(id) {
         Axios.delete(apiURL + '/' + id)
             .then(response => {

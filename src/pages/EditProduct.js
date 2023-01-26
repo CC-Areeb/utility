@@ -8,7 +8,7 @@ export default function EditProduct() {
     const putUrl = 'http://localhost:8000/read-articles/';
     const getURL = 'http://localhost:8000/read-articles/';
 
-    // get the URL param for id
+    // get the URL parameter for id
     const urlID = new URLSearchParams(window.location.search).get('id');
 
 
