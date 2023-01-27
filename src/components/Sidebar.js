@@ -55,7 +55,12 @@ const route = createBrowserRouter(
                 <Route path='/site-settings' element={<SiteSettings />} />
                 {/* <Route path='/logout' element={<Logout />} /> */}
 
-                {/* Pages */}
+
+                {/* Category pages */}
+                
+
+
+                {/* Product pages */}
                 <Route path='/products/add' element={<AddProdcuts />}/>
                 <Route path='/products/edit' element={<EditProduct />}/>
                 <Route path='/products/delete' element={<Products />} />

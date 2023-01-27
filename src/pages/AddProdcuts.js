@@ -9,16 +9,40 @@ export default function AddProdcuts() {
     // all the states
     const [title, setTitle] = useState([]);
     const [category, setCategory] = useState([]);
-    const [description, setDescription] = useState([]);
+    const [header, setHeader] = useState([]);
     const [sku, setSKU] = useState([]);
     const [content, setContent] = useState([]);
+    const [file, setFile] = useState(null);
+    const [bestBefore, setBestBefore] = useState([]);
+    const [batchNumber, setBatchNumber] = useState([]);
+
+    const [imageDesc, setImageDesc] = useState('')
+
+    const [recipe1, setRecipe1] = useState('');
+    const [recipe1Url, setRecipe1Url] = useState('');
+
+    const [recipe2, setRecipe2] = useState('');
+    const [recipe2Url, setRecipe2Url] = useState('');
+
+    const [recipe3, setRecipe3] = useState('');
+    const [recipe3Url, setRecipe3Url] = useState('');
 
     const jsonData = {
         title: title,
-        category: category,
-        description: description,
         sku: sku,
-        content: content
+        category: category,
+        header: header,
+        content: content,
+        file: file,
+        bestBefore: bestBefore,
+        batchNumber: batchNumber,
+        imageDesc: imageDesc,
+        recipe1: recipe1,
+        recipe1Url: recipe1Url,
+        recipe2: recipe2,
+        recipe2Url: recipe2Url,
+        recipe3: recipe3,
+        recipe3Url: recipe3Url,
     };
 
     // calling the navigate hook from react-router-dom
@@ -88,8 +112,8 @@ export default function AddProdcuts() {
                             placeholder="Header"
                             className="form-control"
                             type="text"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
+                            value={header}
+                            onChange={e => setHeader(e.target.value)}
                             style={textAreaHeight}>
                         </textarea>
                         <label className="form-label">Header</label>
@@ -113,6 +137,8 @@ export default function AddProdcuts() {
                                     type="file"
                                     name=""
                                     id=""
+                                    accept="image/jpg,image/jpeg,image/png"
+                                    onChange={e => setFile(e.target.files[0])}
                                     className='border p-2 rounded-3 w-100'
                                 />
                             </div>
@@ -124,6 +150,7 @@ export default function AddProdcuts() {
                                         name=""
                                         id=""
                                         placeholder='Image description'
+                                        onChange={e => setImageDesc(e.target.value)}
                                         className='form-control w-100 py-2'
                                     />
                                 </div>
@@ -138,14 +165,25 @@ export default function AddProdcuts() {
                     <legend className='rounded-2 py-2 text-center' id='content_legend_batch'>Batch Details</legend>
                     <div className="">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="best_before" />
+                            <input class="form-check-input"
+                                type="checkbox"
+                                id="best_before"
+                                checked={bestBefore}
+                                onChange={e => setBestBefore(e.target.checked)}
+                            />
                             <label class="form-check-label" for="best_before">
                                 Show Best Before Date
                             </label>
                         </div>
 
                         <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="batch_number" />
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                checked={batchNumber}
+                                onChange={e => setBatchNumber(e.target.checked)}
+                                id="batch_number"
+                            />
                             <label class="form-check-label" for="batch_number">
                                 Show Batch Number
                             </label>
@@ -161,42 +199,78 @@ export default function AddProdcuts() {
                         <div className="row">
                             <div className="col-6 my-1">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="recepi_1" placeholder="Recipe 1" />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="recepi_1"
+                                        placeholder="Recipe 1"
+                                        onChange={e => setRecipe1(e.target.value)}
+                                    />
                                     <label for="recepi_1">Recipe 1</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
                                 <div class="form-floating mb-3">
-                                    <input type="url" class="form-control" id="recepi_1_url" placeholder="Recipe 1 URL" />
+                                    <input
+                                        type="url"
+                                        class="form-control"
+                                        id="recepi_1_url"
+                                        placeholder="Recipe 1 URL"
+                                        onChange={e => setRecipe1Url(e.target.value)}
+                                    />
                                     <label for="recepi_1_url">Recipe 1 URL</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="recepi_2" placeholder="Recipe 2" />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="recepi_2"
+                                        placeholder="Recipe 2"
+                                        onChange={e => setRecipe2(e.target.value)}
+                                    />
                                     <label for="recepi_2">Recipe 2</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
                                 <div class="form-floating mb-3">
-                                    <input type="url" class="form-control" id="recepi_2_url" placeholder="Recipe 2 URL" />
+                                    <input
+                                        type="url"
+                                        class="form-control"
+                                        id="recepi_2_url"
+                                        placeholder="Recipe 2 URL"
+                                        onChange={e => setRecipe2Url(e.target.value)}
+                                    />
                                     <label for="recepi_2_url">Recipe 2 URL</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="recepi_3" placeholder="Recipe 3" />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="recepi_3"
+                                        placeholder="Recipe 3"
+                                        onChange={e => setRecipe3(e.target.value)}
+                                    />
                                     <label for="recepi_3">Recipe 3</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
                                 <div class="form-floating mb-3">
-                                    <input type="url" class="form-control" id="recepi_3_url" placeholder="Recipe 3 URL" />
+                                    <input
+                                        type="url"
+                                        class="form-control"
+                                        id="recepi_3_url"
+                                        placeholder="Recipe 3 URL"
+                                        onChange={e => setRecipe3Url(e.target.value)}
+                                    />
                                     <label for="recepi_3_url">Recipe 3 URL</label>
                                 </div>
                             </div>

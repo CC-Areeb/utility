@@ -55,7 +55,7 @@ export default function Products() {
             return <tr key={state.url}>
                 <td className='border'>{state.title}</td>
                 <td className='border'>{state.category}</td>
-                <td className='border'>{state.description}</td>
+                <td className='border'>{state.header}</td>
                 <td className='border'>{state.sku}</td>
                 <td className='border'>{state.content}</td>
                 <td className='border'>
