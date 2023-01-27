@@ -107,7 +107,32 @@
     background-color: white;
 }
 
-.prod_table_head:hover
-{
+.prod_table_head:hover {
     cursor: pointer;
+}
+
+#category_dropDown {
+    padding: 1rem 0.7rem;
+}
+
+#product_fieldset {
+    margin-top: 4rem;
+}
+
+#content_legend {
+    background-color: var(--main-hover-text-color);
+    color: white;
+    width: 9rem;
+    margin: -52px 0px 28px 0px;
+}
+
+#content_legend_batch {
+    background-color: var(--main-hover-text-color);
+    color: white;
+    width: 12rem;
+    margin: -52px 0px 28px 0px;
+}
+
+#product_heading {
+    margin: 0rem 0rem 0rem 19rem;
 }
