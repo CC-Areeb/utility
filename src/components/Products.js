@@ -18,7 +18,6 @@ export default function Products() {
     const dataPerPage = 3;
     const pagesVisited = pageNumber * dataPerPage;
 
-
     // Get request
     useEffect(() => {
         const dataFetch = async () => {
@@ -56,7 +55,7 @@ export default function Products() {
             return <tr key={state.url}>
                 <td className='border'>{state.title}</td>
                 <td className='border'>{state.category}</td>
-                <td className='border'>{state.description}</td>
+                <td className='border'>{state.header}</td>
                 <td className='border'>{state.sku}</td>
                 <td className='border'>{state.content}</td>
                 <td className='border'>
@@ -109,7 +108,7 @@ export default function Products() {
                             <th onClick={toggleClick} scope="col" className='border prod_table_head'>Description</th>
                             <th onClick={toggleClick} scope="col" className='border prod_table_head'>SKU</th>
                             <th onClick={toggleClick} scope="col" className='border prod_table_head'>Content</th>
-                            <th onClick={toggleClick} scope="col" className='border'>Actions</th>
+                            <th scope="col" className='border'>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
