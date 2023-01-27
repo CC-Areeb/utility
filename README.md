@@ -419,7 +419,6 @@ This type of request is used to update the previously stored data and change the
         navigate('/products');
     }
     ```
-
 ### Redirecting
 
 We can redirect the user after they have submitted a form with react-router-dom. For this we need to use the `useNavigate` hook
@@ -449,6 +448,7 @@ const handleSubmit = async (e) => {
 As you can see, we can navigate after `Axios` has applied the post method
 so when the button is clicked, the Axios fires the post method to save the
 data and then the redirect hook is fired to redirect the user to that URL
+<<<<<<< HEAD
 end-point.
 
 ### Delet request
@@ -550,3 +550,6 @@ const handleSearchChange = e => {
 ```
 
 In the json server guide, the `q=` is used as a search filter parameter so we just adjust our api url by adding a small query parameter to it.
+=======
+end-point.
+>>>>>>> Add existing project files to Git

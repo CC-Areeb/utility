@@ -3,11 +3,15 @@
     --main-hover-color: darkcyan;
     --main-hover-text-color: #b58a51;
     --main-text-color: black;
+<<<<<<< HEAD
     --margin: 30px 0px 0px 330px;
     --white-color: whitesmoke;
     --preview-black-box-bg-color: #313131;
     --peview-green-box: #6c855f;
     --preview-yellow-box: #fffcf8;
+=======
+    --margin: 30px 0px 0px 330px
+>>>>>>> Add existing project files to Git
 }
 
 /* Media queries */
@@ -78,8 +82,12 @@
 }
 
 .paginateButton a,
+<<<<<<< HEAD
 #add_prod,
 #add_cat {
+=======
+#add_prod {
+>>>>>>> Add existing project files to Git
     padding: 5px 12px;
     border-radius: 5px;
     border: 1px solid #b58a51;
@@ -99,8 +107,12 @@
     background-color: white;
 }
 
+<<<<<<< HEAD
 #add_prod,
 #add_cat {
+=======
+#add_prod {
+>>>>>>> Add existing project files to Git
     color: #b58a51;
     background-color: white;
     margin: 0px 0px 0px 55px;
@@ -111,6 +123,7 @@
     text-decoration: none;
     color: #b58a51;
     background-color: white;
+<<<<<<< HEAD
 }
 
 .prod_table_head:hover {
@@ -172,4 +185,6 @@
 .file_desc,
 .second_img_desc {
     margin: 31px 0px 0px 0px;
+=======
+>>>>>>> Add existing project files to Git
 }

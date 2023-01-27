@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import loader from '../utilities/loader.gif';
 import ReactPaginate from 'react-paginate';
@@ -91,5 +92,12 @@ export default function Categories() {
                 <NavLink className='text-decoration-none' id='add_cat' to='/category/add'>Add Product</NavLink>
             </div>
         </div>
+=======
+import React from 'react'
+
+export default function Categories() {
+    return (
+        <div>Categories</div>
+>>>>>>> Add existing project files to Git
     )
 }
