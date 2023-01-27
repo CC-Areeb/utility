@@ -1,24 +1,5 @@
 {
-  "products": [
-    {
-      "title": "Quaerat beatae aliqu",
-      "sku": "Vel eaque ducimus n",
-      "category": [],
-      "header": "Officia qui quia dol",
-      "content": "Ducimus possimus d",
-      "file": null,
-      "bestBefore": true,
-      "batchNumber": false,
-      "imageDesc": "Odio sit aut volupta",
-      "recipe1": "Vel ullamco at facer",
-      "recipe1Url": "https://www.qobukunajuzu.co",
-      "recipe2": "Proident exercitati",
-      "recipe2Url": "https://www.nicesefasipo.co",
-      "recipe3": "Amet dolor laborum ",
-      "recipe3Url": "https://www.lyhocynu.me",
-      "id": 1
-    }
-  ],
+  "products": [],
   "category": [],
   "batches": []
 }

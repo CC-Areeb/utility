@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import img1 from '../utilities/img1.jpg'
 
 export default function AddProdcuts() {
 
@@ -64,7 +65,6 @@ export default function AddProdcuts() {
     return (
         <div className='items mb-4'>
             <p className='display-1' id='product_heading'>Add Products</p>
-
             <form onSubmit={handleSubmit} method='POST' className='content w-75'>
                 <div className="container mb-4">
                     <div className="row">
@@ -96,9 +96,9 @@ export default function AddProdcuts() {
                         <div className="col-4">
                             <select class="form-select" name="" id="category_dropDown">
                                 <option value="" selected>Select Category</option>
-                                <option value={sku}>option 1</option>
-                                <option value={sku}>option 2</option>
-                                <option value={sku}>option 3</option>
+                                <option value={category}>option 1</option>
+                                <option value={category}>option 2</option>
+                                <option value={category}>option 3</option>
                             </select>
                         </div>
                     </div>
@@ -280,11 +280,54 @@ export default function AddProdcuts() {
                 </fieldset>
 
                 <button type="submit" className="btn btn-outline-success mt-4 mx-4 btn-lg">Add Product</button>
-                <button type="reset" className="btn btn-outline-primary mt-4 btn-lg">Preview</button>
+
+                <button
+                    type="button"
+                    className="btn btn-outline-primary mt-4 btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#productPreviewModal"
+                >
+                    Preview
+                </button>
+
+                <div class="modal fade" id="productPreviewModal" tabindex="-1" aria-labelledby="productPreviewModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="productPreviewModalLabel">Product Preview</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                {/* Category boxes */}
+                                <div className='black_box rounded-2 text-center'>
+                                    <h1 className="p-4">
+                                        Qui quod quisquam quod voluptatum cum veritatis fugiat ex r
+                                    </h1>
+                                    <p className='fs-5'>
+                                        Eiusmod vel dolor sed labore tempore impedit doloremque recusandae
+                                    </p>
+                                    <div className="cover_image">
+                                        <img src={img1} class="img-fluid" alt="Dummy content" />
+                                    </div>
+                                </div>
+
+                                {/* Static content */}
+                                <div className='green_box p-4 text-center'>
+                                    <h3 className='mb-4'>From pristine and remote forests in New Zealand</h3>
+                                    <p className='fs-5'>
+                                        We bring you this genuine Mānuka Honey with UMF™ levels guaranteed for its entire shelf life.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </div>
     )
 }
-
-
-//  value={description} onChange={e => setDescription(e.target.value)}
