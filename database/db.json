@@ -1,5 +1,40 @@
 {
-  "products": [],
-  "category": [],
+  "products": [
+    {
+      "title": "Ut accusantium cumqu",
+      "sku": "Facere sed cupidatat",
+      "category": [],
+      "header": "Rerum commodi sit c",
+      "content": "Eu sed nemo debitis ",
+      "file": null,
+      "bestBefore": true,
+      "batchNumber": false,
+      "imageDesc": "Cillum debitis exerc",
+      "recipe1": "Soluta illo iusto hi",
+      "recipe1Url": "https://www.pusabepyc.org.au",
+      "recipe2": "Fugiat omnis quasi ",
+      "recipe2Url": "https://www.pet.co",
+      "recipe3": "Saepe sint velit ad ",
+      "recipe3Url": "https://www.dyke.com.au",
+      "id": 1
+    }
+  ],
+  "category": [
+    {
+      "title": "Title 1",
+      "time_of_adding": "14/Oct/2022",
+      "product_number": "3",
+      "heading": "",
+      "sub_heading": "",
+      "content_heading": "",
+      "content_sub_heading": "",
+      "file": null,
+      "button_name": "",
+      "button_link": "",
+      "second_image": "",
+      "second_image_description": "",
+      "id": 1
+    }
+  ],
   "batches": []
 }

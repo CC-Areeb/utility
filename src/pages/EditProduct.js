@@ -238,8 +238,8 @@ export default function EditProduct() {
                                             class="form-control"
                                             id="recepi_2_url"
                                             placeholder="Recipe 2 URL"
-                                            value={formData.recipe3}
-                                            onChange={e => setFormData({ ...formData, recipe3Url: e.target.value })}
+                                            value={formData.recipe2Url}
+                                            onChange={e => setFormData({ ...formData, recipe2Url: e.target.value })}
                                         />
                                         <label for="recepi_2_url">Recipe 2 URL</label>
                                     </div>
@@ -279,8 +279,22 @@ export default function EditProduct() {
 
 
                 </div>
-                <button type="submit" className="btn btn-outline-success mt-4 mx-4 btn-lg">Update</button>
-                <button type="submit" className="btn btn-outline-primary mt-4 btn-lg">Preview</button>
+                <button
+                    type="submit"
+                    className="btn btn-outline-success mt-4 mx-4 btn-lg">
+                    Update
+                </button>
+
+
+                <button
+                    type="button"
+                    className="btn btn-outline-primary mt-4 btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#productPreviewModal"
+                >
+                    Preview
+                </button>
+
             </form>
         </div>
     )

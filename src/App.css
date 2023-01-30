@@ -150,3 +150,19 @@
     background-color: var(--peview-green-box);
     color: var(--white-color);
 }
+
+.yellow_box
+{
+    background-color: var(--preview-yellow-box);
+    color: black;
+}
+
+.recipe_link
+{
+    text-decoration: none;
+}
+
+.static_email_box
+{
+    background-color: var(--main-hover-text-color);
+}

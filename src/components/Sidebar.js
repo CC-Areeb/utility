@@ -30,6 +30,8 @@ import SiteSettings from './SiteSettings';
 // pages
 import AddProdcuts from '../pages/AddProdcuts';
 import EditProduct from '../pages/EditProduct';
+import AddCategory from '../pages/AddCategory';
+import EditCategory from '../pages/EditCategory';
 
 
 const route = createBrowserRouter(
@@ -57,14 +59,14 @@ const route = createBrowserRouter(
 
 
                 {/* Category pages */}
-                
-
-                {/* Batch pages */}
-
+                <Route path='/category/add' element={<AddCategory />} />
+                <Route path='/category/edit' element={<EditCategory />} />
 
                 {/* Product pages */}
                 <Route path='/products/add' element={<AddProdcuts />}/>
                 <Route path='/products/edit' element={<EditProduct />}/>
+
+                {/* Batch pages */}
             </Route>
         </>
     )
