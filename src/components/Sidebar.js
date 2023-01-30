@@ -48,7 +48,7 @@ const route = createBrowserRouter(
                 <Route path='/batches' element={<Batches />} />
                 <Route path='/users' element={<Users />} />
                 <Route path='/roles' element={<Roles />} />
-                <Route path='/categories' element={<Categories />} />
+                <Route path='/category' element={<Categories />} />
                 <Route path='/beekeeper' element={<Beekeeper />} />
                 <Route path='/region' element={<Region />} />
                 <Route path='/emails' element={<Emails />} />

@@ -78,7 +78,8 @@
 }
 
 .paginateButton a,
-#add_prod {
+#add_prod,
+#add_cat {
     padding: 5px 12px;
     border-radius: 5px;
     border: 1px solid #b58a51;
@@ -98,7 +99,8 @@
     background-color: white;
 }
 
-#add_prod {
+#add_prod,
+#add_cat {
     color: #b58a51;
     background-color: white;
     margin: 0px 0px 0px 55px;
@@ -151,18 +153,23 @@
     color: var(--white-color);
 }
 
-.yellow_box
-{
+.yellow_box {
     background-color: var(--preview-yellow-box);
     color: black;
 }
 
-.recipe_link
-{
+.recipe_link {
     text-decoration: none;
 }
 
-.static_email_box
-{
+.static_email_box {
     background-color: var(--main-hover-text-color);
+}
+
+
+/* Add Category */
+.button_link_container,
+.file_desc,
+.second_img_desc {
+    margin: 31px 0px 0px 0px;
 }

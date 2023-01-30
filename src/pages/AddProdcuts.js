@@ -5,7 +5,7 @@ import img1 from '../utilities/img1.jpg';
 import img2 from '../utilities/img2.jpg';
 
 export default function AddProdcuts() {
-
+    // Urls
     const postUrl = 'http://localhost:8000/products';
 
     // all the states

@@ -67,7 +67,7 @@ export default function Categories() {
 
     return (
         <div className='items'>
-            <p className='display-1'>Categories</p>
+            <p className='display-1'>Category</p>
             <div className="form-floating my-4 w-25" id='product_search_bar'>
                 <input type="text" className="form-control" id="prod_search" placeholder="Search..." value={search} onChange={handleSearchChange} />
                 <label htmlFor="prod_search">Search ...</label>
@@ -86,6 +86,9 @@ export default function Categories() {
                         {loading ? <span id='loading_screen'><img src={loader} alt="" id='loader_gif' /></span> : displayData}
                     </tbody>
                 </table>
+            </div>
+            <div>
+                <NavLink className='text-decoration-none' id='add_cat' to='/category/add'>Add Product</NavLink>
             </div>
         </div>
     )
