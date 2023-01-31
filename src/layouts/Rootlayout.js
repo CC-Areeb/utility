@@ -14,7 +14,7 @@ export default function Rootlayout() {
                 <NavLink to="/batches"><i className="bi bi-diagram-3"></i> Manage Batches</NavLink>
                 <NavLink to="/users"><i className="bi bi-people-fill"></i> Manage Users</NavLink>
                 <NavLink to="/roles"><i className="bi bi-person-lines-fill"></i> Manage Roles</NavLink>
-                <NavLink to="/categories"><i className="bi bi-list-stars"></i> Manage Categories</NavLink>
+                <NavLink to="/category"><i className="bi bi-list-stars"></i> Manage Categories</NavLink>
                 <NavLink to="/beekeeper"><i className="bi bi-pc-display-horizontal"></i> Manage Beekeepers</NavLink>
                 <NavLink to="/region"><i className="bi bi-geo"></i> Manage Regions</NavLink>
                 <NavLink to="/emails"><i className="bi bi-envelope-at"></i> Manage Emails</NavLink>

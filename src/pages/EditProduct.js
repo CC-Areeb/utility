@@ -276,25 +276,110 @@ export default function EditProduct() {
                             </div>
                         </div>
                     </fieldset>
-
-
                 </div>
                 <button
                     type="submit"
-                    className="btn btn-outline-success mt-4 mx-4 btn-lg">
+                    className="btn btn-outline-success mt-4 mx-4 btn-lg my-4"
+                >
                     Update
                 </button>
 
 
                 <button
                     type="button"
-                    className="btn btn-outline-primary mt-4 btn-lg"
+                    className="btn btn-outline-primary mt-4 btn-lg my-4"
                     data-bs-toggle="modal"
                     data-bs-target="#productPreviewModal"
                 >
                     Preview
                 </button>
+                <div class="modal fade" id="productPreviewModal" tabindex="-1" aria-labelledby="productPreviewModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="productPreviewModalLabel">Product Preview</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
+                                {/* Category content - will make this data come from category part soon */}
+                                <div className='black_box rounded-2 text-center'>
+                                    <h1 className="p-4">
+                                        Qui quod quisquam quod voluptatum cum veritatis fugiat ex r
+                                    </h1>
+                                    <p className='fs-5'>
+                                        Eiusmod vel dolor sed labore tempore impedit doloremque recusandae
+                                    </p>
+                                    <div className="cover_image">
+                                        <img src={formData.img1} class="img-fluid" alt="Dummy content" />
+                                    </div>
+                                </div>
+
+                                {/* Static content */}
+                                <div className='green_box p-4 text-center'>
+                                    <h3 className='mb-4'>From pristine and remote forests in New Zealand</h3>
+                                    <p className='fs-5'>
+                                        We bring you this genuine Mānuka Honey with UMF™ levels guaranteed for its entire shelf life.
+                                    </p>
+                                </div>
+
+                                {/* Product content */}
+                                <div className='yellow_box rounded-2 text-center'>
+                                    <div className="cover_image">
+                                        <img src={formData.img2} class="img-fluid" alt="Dummy content" />
+                                    </div>
+                                    <p className="pt-4">In your hands, you have certified</p>
+                                    <h1 className="p-4">
+                                        Qui quod quisquam quod voluptatum cum veritatis fugiat ex r
+                                    </h1>
+                                    <p className='fs-5 pb-4'>
+                                        Eiusmod vel dolor sed labore tempore impedit doloremque recusandae
+                                    </p>
+                                    <div className="recipe_link_container pb-4">
+                                        <a className='recipe_link text-success' href={formData.recipe1Url}>
+                                            {formData.recipe1}
+                                        </a>
+                                    </div>
+
+                                    <div className="recipe_link_container pb-4">
+                                        <a className='recipe_link text-success' href={formData.recipe2Url}>
+                                            {formData.recipe2}
+                                        </a>
+                                    </div>
+
+                                    <div className="recipe_link_container pb-4">
+                                        <a className='recipe_link text-success' href={formData.recipe3Url}>
+                                            {formData.recipe3}
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* Static Email box */}
+                                <div className='static_email_box'>
+                                    <h3 className='p-4 text-center text-white'>Sign Up Here</h3>
+                                    <p className='p-4 text-center text-white'>Learn more about the benefits of Mānuka Honey and receive special offers from Comvita</p>
+                                    <form action="" className='pb-4 ps-4 pe-4'>
+                                        <div class="form-floating mb-4">
+                                            <input
+                                                type="email"
+                                                class="form-control"
+                                                id="modal_email"
+                                                placeholder="email@example.com"
+                                            />
+                                            <label for="modal_email">Email address</label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                {/* Batch content */}
+                                <h1>Notice - Batch items are ongoing, please wait. 😇</h1>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     )
