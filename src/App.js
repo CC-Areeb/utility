@@ -1,12 +1,13 @@
 import './App.css';
+import Login from './components/Login';
 import Sidebar from './components/Sidebar';
 
 function App() {
   return (
     <>
-      <Sidebar />
+      {localStorage.getItem('token') ? <Sidebar /> : <Login />}
     </>
   );
-} 
+}
 
 export default App;

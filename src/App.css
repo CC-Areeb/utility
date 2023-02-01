@@ -26,7 +26,10 @@
     margin: var(--margin);
 }
 
-
+/* login screen */
+.login_screen {
+    margin: 300px auto 0px auto;
+}
 
 /* side bar component */
 #side_bar {

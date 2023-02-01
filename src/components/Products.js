@@ -6,8 +6,15 @@ import { NavLink } from 'react-router-dom';
 
 export default function Products() {
     // URLs
-    const apiURL = 'http://localhost:8000/products';
+    const apiURL = 'http://127.0.0.1:8000/api/products';
+    const token = localStorage.getItem('token');
     const searchUrl = "http://localhost:8000/products?q=";
+    const headers = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
 
     // use states
     const [state, setState] = useState([]);
@@ -22,9 +29,9 @@ export default function Products() {
     useEffect(() => {
         const dataFetch = async () => {
             setLoading(true);
-            Axios.get(apiURL).then(function (response) {
+            Axios.get(apiURL,headers).then(function (response) {
                 setLoading(false);
-                setState(response.data.map((e) => { return e }));
+                setState(response.data.data.data);
             });
         };
         dataFetch();

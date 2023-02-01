@@ -1,38 +1,5 @@
 {
-  "products": [
-    {
-      "title": "Ut accusantium cumqu",
-      "sku": "Facere sed cupidatat",
-      "category": [],
-      "header": "Rerum commodi sit c",
-      "content": "Eu sed nemo debitis ",
-      "file": null,
-      "bestBefore": true,
-      "batchNumber": false,
-      "imageDesc": "Cillum debitis exerc",
-      "recipe1": "Soluta illo iusto hi",
-      "recipe1Url": "https://www.pusabepyc.org.au",
-      "recipe2": "Fugiat omnis quasi ",
-      "recipe2Url": "https://www.pet.co",
-      "recipe3": "Saepe sint velit ad ",
-      "recipe3Url": "https://www.dyke.com.au",
-      "id": 1
-    }
-  ],
-  "category": [
-    {
-      "title": "Voluptatibus nulla i",
-      "heading": "Animi officiis in q",
-      "sub_heading": "Vel consequatur qui",
-      "content_heading": "Iste dolores et id e",
-      "content_sub_heading": "Labore eveniet temp",
-      "file": {},
-      "button_name": "Corrupti unde nulla",
-      "button_link": "https://www.sik.net",
-      "second_image": {},
-      "second_image_description": "Ipsum labore consequ",
-      "id": 1
-    }
-  ],
+  "products": [],
+  "category": [],
   "batches": []
 }

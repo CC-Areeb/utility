@@ -26,6 +26,7 @@ import Emails from './Emails';
 import InvalidCodes from './InvalidCodes';
 import Reports from './Reports';
 import SiteSettings from './SiteSettings';
+import Login from './Login';
 
 // pages
 import AddProdcuts from '../pages/AddProdcuts';
@@ -37,6 +38,9 @@ import EditCategory from '../pages/EditCategory';
 const route = createBrowserRouter(
     createRoutesFromElements(
         <>
+            {/* login route */}
+            <Route path='/login' element={<Login />} />
+
             {/* Side bar routes */}
             <Route path='/' element={<Rootlayout />}>
                 <Route path='/dashboard' element={<Dashboard />} />
@@ -63,8 +67,8 @@ const route = createBrowserRouter(
                 <Route path='/category/edit' element={<EditCategory />} />
 
                 {/* Product pages */}
-                <Route path='/products/add' element={<AddProdcuts />}/>
-                <Route path='/products/edit' element={<EditProduct />}/>
+                <Route path='/products/add' element={<AddProdcuts />} />
+                <Route path='/products/edit' element={<EditProduct />} />
 
                 {/* Batch pages */}
             </Route>

@@ -359,7 +359,7 @@ export default function AddProdcuts() {
                                     <p className='p-4 text-center text-white'>Learn more about the benefits of Mānuka Honey and receive special offers from Comvita</p>
                                     <form action="" className='pb-4 ps-4 pe-4'>
                                         <div class="form-floating mb-4">
-                                            <input  
+                                            <input
                                                 type="email"
                                                 class="form-control"
                                                 id="modal_email"
