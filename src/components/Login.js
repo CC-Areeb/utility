@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
     // URLs

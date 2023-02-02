@@ -3,15 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function EditProduct() {
-
-    // URLs
-    const putUrl = 'http://localhost:8000/products/';
-    const getURL = 'http://localhost:8000/products/';
-
-    // get the URL parameter for id
-    const urlID = new URLSearchParams(window.location.search).get('id');
-
-
+    const token = localStorage.getItem('token');
+    const headers = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
     const [formData, setFormData] = useState({
         "title": "",
         "sku": "",
@@ -31,11 +28,14 @@ export default function EditProduct() {
     });
 
     // Get request for 1 single data
+    const getUrl = `http://127.0.0.1:8000/api/products/show/${formData.sku}`;
     useEffect(() => {
-        Axios.get(getURL + urlID)
-            .then(response => {
-                setFormData(response.data);
-            });
+        Axios.get(getUrl + headers)
+        .then(response => {
+            console.log(response);
+            setFormData(response.data);
+        });
+        // console.log(getUrl);
     }, []);
 
 
@@ -44,9 +44,10 @@ export default function EditProduct() {
 
 
     // Put request for updating
+    const putUrl = `http://localhost:8000/products/${formData.slug}/edit`;
     function handleSubmit(event) {
         event.preventDefault();
-        Axios.put(putUrl + urlID, formData);
+        Axios.put(putUrl, headers, formData);
         navigate('/products');
     }
 

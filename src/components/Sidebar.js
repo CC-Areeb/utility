@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -34,7 +34,6 @@ import EditProduct from '../pages/EditProduct';
 import AddCategory from '../pages/AddCategory';
 import EditCategory from '../pages/EditCategory';
 
-
 const route = createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -68,7 +67,7 @@ const route = createBrowserRouter(
 
                 {/* Product pages */}
                 <Route path='/products/add' element={<AddProdcuts />} />
-                <Route path='/products/edit' element={<EditProduct />} />
+                <Route path='/products/:slug/edit' element={<EditProduct />} />
 
                 {/* Batch pages */}
             </Route>

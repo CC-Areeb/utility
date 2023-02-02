@@ -66,7 +66,7 @@ export default function Products() {
                 <td className='border'>{state.sku}</td>
                 <td className='border'>{state.content}</td>
                 <td className='border'>
-                    <NavLink to={`/products/edit?id=${state.id}`}>
+                    <NavLink to={`/products/${state.slug}/edit`}>
                         <button type="button" className="btn btn-outline-primary mx-2">
                             Edit
                             <i className="bi bi-pencil-square px-1" id='edit'></i>

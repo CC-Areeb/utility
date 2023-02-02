@@ -10,7 +10,6 @@ export default function AddProdcuts() {
 
     // all the states
     const [title, setTitle] = useState('');
-    const [packagedDescription, setPackagedDescription] = useState('');
     const [categoryId, setCategoryId] = useState('');
     const [dateCheckbox, setDateCheckbox] = useState('');
     const [batchCheckbox, setBatchCheckbox] = useState('');
@@ -25,17 +24,19 @@ export default function AddProdcuts() {
     const [recipe1Url, setRecipe1Url] = useState('');
     const [recipe2Url, setRecipe2Url] = useState('');
     const [recipe3Url, setRecipe3Url] = useState('');
+    const [error, setError] = useState([]);
     const token = localStorage.getItem('token');
     const headers = {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            "Content-Type": `multipart/form-data` /* Always needed */
         }
     }
 
     // Data to send 
     const jsonData = {
         title: title,
-        packaged_description: packagedDescription,
+        packaged_description: 'test',
         category_id: categoryId,
         company_id: 1,
         date_checkbox: dateCheckbox,
@@ -49,7 +50,7 @@ export default function AddProdcuts() {
         recipe1_url: recipe1Url,
         recipe2: recipe2,
         recipe2_url: recipe2Url,
-        recipe3: recipe3, 
+        recipe3: recipe3,
         recipe3_url: recipe3Url
     };
 
@@ -59,8 +60,15 @@ export default function AddProdcuts() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const addData = async () => {
-            Axios.post(postUrl, headers, jsonData).then((response) => {console.log(response);})
-            navigate('/products');
+            let date = dateCheckbox == "" ? false : true
+            jsonData.date_checkbox = date
+            let batch = batchCheckbox == "" ? false : true
+            jsonData.batch_checkbox = batch
+            await Axios.post(postUrl, jsonData, headers).then((response) => { navigate('/products'); })
+            .catch((e) => {
+                console.log(e.response.data.errors);
+                setError(e.response.data.errors)
+            })
         };
         addData();
     }
@@ -72,7 +80,7 @@ export default function AddProdcuts() {
     return (
         <div className='items mb-4'>
             <p className='display-1' id='product_heading'>Add Products</p>
-            <form onSubmit={handleSubmit} method='POST' className='content w-75'>
+            <form onSubmit={handleSubmit} method='POST' className='content w-75' enctype="multipart/form-data">
                 <div className="container mb-4">
                     <div className="row">
                         <div className="col-4">
@@ -84,6 +92,7 @@ export default function AddProdcuts() {
                                     value={title}
                                     onChange={e => setTitle(e.target.value)}
                                 />
+                                {error.title}
                                 <label className="form-label">Title</label>
                             </div>
                         </div>
@@ -142,7 +151,7 @@ export default function AddProdcuts() {
                             <div className="col-6">
                                 <input
                                     type="file"
-                                    name=""
+                                    name="image"
                                     id=""
                                     accept="image/jpg,image/jpeg,image/png"
                                     onChange={e => setImage(e.target.files[0])}
