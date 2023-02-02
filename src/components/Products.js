@@ -15,7 +15,6 @@ export default function Products() {
         }
     }
 
-
     // use states
     const [state, setState] = useState([]);
     const [loading, setLoading] = useState(false);

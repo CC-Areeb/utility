@@ -29,7 +29,7 @@ export default function AddProdcuts() {
     const headers = {
         headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": `multipart/form-data` /* Always needed */
+            "Content-Type": `multipart/form-data` /* Always needed for files */
         }
     }
 
@@ -93,7 +93,7 @@ export default function AddProdcuts() {
                                     value={title}
                                     onChange={e => setTitle(e.target.value)}
                                 />
-                                {error.title}
+                                <span className='text-danger'>{error.title}</span>
                                 <label className="form-label">Title</label>
                             </div>
                         </div>
@@ -103,9 +103,11 @@ export default function AddProdcuts() {
                                 <input
                                     placeholder="Sku"
                                     className="form-control"
-                                    type="text" value={sku}
+                                    type="text"
+                                    value={sku}
                                     onChange={e => setSku(e.target.value)}
                                 />
+                                <span className='text-danger'>{error.sku}</span>
                                 <label className="form-label">Sku</label>
                             </div>
                         </div>
@@ -113,10 +115,11 @@ export default function AddProdcuts() {
                         <div className="col-4">
                             <select class="form-select" name="" id="category_dropDown">
                                 <option value="" selected>Select Category</option>
-                                <option value={categoryId}>option 1</option>
+                                <option value={categoryId}></option>
                                 {/* <option value={category}>option 2</option> */}
                                 {/* <option value={category}>option 3</option> */}
                             </select>
+                            <span className='text-danger'>{error.category_id}</span>
                         </div>
                     </div>
                 </div>
@@ -133,6 +136,7 @@ export default function AddProdcuts() {
                             onChange={e => setHeader(e.target.value)}
                             style={textAreaHeight}>
                         </textarea>
+                        <span className='text-danger'>{error.header}</span>
                         <label className="form-label">Header</label>
                     </div>
 
@@ -144,6 +148,7 @@ export default function AddProdcuts() {
                             onChange={e => setContent(e.target.value)}
                             style={textAreaHeight}>
                         </textarea>
+                        <span className='text-danger'>{error.content}</span>
                         <label className="form-label">Content</label>
                     </div>
 
@@ -158,6 +163,7 @@ export default function AddProdcuts() {
                                     onChange={e => setImage(e.target.files[0])}
                                     className='border p-2 rounded-3 w-100'
                                 />
+                                <span className='text-danger'>{error.image}</span>
                             </div>
 
                             <div className="col-6">
@@ -170,6 +176,7 @@ export default function AddProdcuts() {
                                         onChange={e => setImageAlt(e.target.value)}
                                         className='form-control w-100 py-2'
                                     />
+                                    <span className='text-danger'>{error.imagealt}</span>
                                 </div>
                             </div>
                         </div>
