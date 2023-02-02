@@ -6,45 +6,51 @@ import img2 from '../utilities/img2.jpg';
 
 export default function AddProdcuts() {
     // Urls
-    const postUrl = 'http://localhost:8000/products';
+    const postUrl = 'http://127.0.0.1:8000/api/products/store';
 
     // all the states
-    const [title, setTitle] = useState([]);
-    const [category, setCategory] = useState([]);
-    const [header, setHeader] = useState([]);
-    const [sku, setSKU] = useState([]);
-    const [content, setContent] = useState([]);
-    const [file, setFile] = useState(null);
-    const [bestBefore, setBestBefore] = useState(false);
-    const [batchNumber, setBatchNumber] = useState(false);
-
-    const [imageDesc, setImageDesc] = useState('')
-
+    const [title, setTitle] = useState('');
+    const [packagedDescription, setPackagedDescription] = useState('');
+    const [categoryId, setCategoryId] = useState('');
+    const [dateCheckbox, setDateCheckbox] = useState('');
+    const [batchCheckbox, setBatchCheckbox] = useState('');
+    const [header, setHeader] = useState('');
+    const [content, setContent] = useState('');
+    const [image, setImage] = useState('');
+    const [imageAlt, setImageAlt] = useState('');
+    const [sku, setSku] = useState('');
     const [recipe1, setRecipe1] = useState('');
-    const [recipe1Url, setRecipe1Url] = useState('');
-
     const [recipe2, setRecipe2] = useState('');
-    const [recipe2Url, setRecipe2Url] = useState('');
-
     const [recipe3, setRecipe3] = useState('');
+    const [recipe1Url, setRecipe1Url] = useState('');
+    const [recipe2Url, setRecipe2Url] = useState('');
     const [recipe3Url, setRecipe3Url] = useState('');
+    const token = localStorage.getItem('token');
+    const headers = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
 
+    // Data to send 
     const jsonData = {
         title: title,
-        sku: sku,
-        category: category,
+        packaged_description: packagedDescription,
+        category_id: categoryId,
+        company_id: 1,
+        date_checkbox: dateCheckbox,
+        batch_checkbox: batchCheckbox,
         header: header,
         content: content,
-        file: file,
-        bestBefore: bestBefore,
-        batchNumber: batchNumber,
-        imageDesc: imageDesc,
+        image: image,
+        imagealt: imageAlt,
+        sku: sku,
         recipe1: recipe1,
-        recipe1Url: recipe1Url,
+        recipe1_url: recipe1Url,
         recipe2: recipe2,
-        recipe2Url: recipe2Url,
-        recipe3: recipe3,
-        recipe3Url: recipe3Url,
+        recipe2_url: recipe2Url,
+        recipe3: recipe3, 
+        recipe3_url: recipe3Url
     };
 
     // calling the navigate hook from react-router-dom
@@ -53,7 +59,7 @@ export default function AddProdcuts() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const addData = async () => {
-            Axios.post(postUrl, jsonData)
+            Axios.post(postUrl, headers, jsonData).then((response) => {console.log(response);})
             navigate('/products');
         };
         addData();
@@ -88,7 +94,7 @@ export default function AddProdcuts() {
                                     placeholder="Sku"
                                     className="form-control"
                                     type="text" value={sku}
-                                    onChange={e => setSKU(e.target.value)}
+                                    onChange={e => setSku(e.target.value)}
                                 />
                                 <label className="form-label">Sku</label>
                             </div>
@@ -97,9 +103,9 @@ export default function AddProdcuts() {
                         <div className="col-4">
                             <select class="form-select" name="" id="category_dropDown">
                                 <option value="" selected>Select Category</option>
-                                <option value={category}>option 1</option>
-                                <option value={category}>option 2</option>
-                                <option value={category}>option 3</option>
+                                <option value={categoryId}>option 1</option>
+                                {/* <option value={category}>option 2</option> */}
+                                {/* <option value={category}>option 3</option> */}
                             </select>
                         </div>
                     </div>
@@ -139,7 +145,7 @@ export default function AddProdcuts() {
                                     name=""
                                     id=""
                                     accept="image/jpg,image/jpeg,image/png"
-                                    onChange={e => setFile(e.target.files[0])}
+                                    onChange={e => setImage(e.target.files[0])}
                                     className='border p-2 rounded-3 w-100'
                                 />
                             </div>
@@ -151,7 +157,7 @@ export default function AddProdcuts() {
                                         name=""
                                         id=""
                                         placeholder='Image description'
-                                        onChange={e => setImageDesc(e.target.value)}
+                                        onChange={e => setImageAlt(e.target.value)}
                                         className='form-control w-100 py-2'
                                     />
                                 </div>
@@ -169,8 +175,8 @@ export default function AddProdcuts() {
                             <input class="form-check-input"
                                 type="checkbox"
                                 id="best_before"
-                                checked={bestBefore}
-                                onChange={e => setBestBefore(e.target.checked)}
+                                checked={dateCheckbox}
+                                onChange={e => setDateCheckbox(e.target.checked)}
                             />
                             <label class="form-check-label" for="best_before">
                                 Show Best Before Date
@@ -181,8 +187,8 @@ export default function AddProdcuts() {
                             <input
                                 class="form-check-input"
                                 type="checkbox"
-                                checked={batchNumber}
-                                onChange={e => setBatchNumber(e.target.checked)}
+                                checked={batchCheckbox}
+                                onChange={e => setBatchCheckbox(e.target.checked)}
                                 id="batch_number"
                             />
                             <label class="form-check-label" for="batch_number">

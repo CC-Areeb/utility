@@ -31,7 +31,7 @@ export default function Products() {
             setLoading(true);
             Axios.get(apiURL,headers).then(function (response) {
                 setLoading(false);
-                setState(response.data.data.data);
+                setState(response.data.data);
             });
         };
         dataFetch();
@@ -59,7 +59,7 @@ export default function Products() {
     const displayData = state
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
-            return <tr key={state.url}>
+            return <tr key={state.id}>
                 <td className='border'>{state.title}</td>
                 <td className='border'>{state.category}</td>
                 <td className='border'>{state.header}</td>
