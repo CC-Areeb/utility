@@ -35,7 +35,6 @@ export default function EditProduct() {
             console.log(response);
             setFormData(response.data);
         });
-        // console.log(getUrl);
     }, []);
 
 

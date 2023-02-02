@@ -64,8 +64,9 @@ export default function AddProdcuts() {
             jsonData.date_checkbox = date
             let batch = batchCheckbox == "" ? false : true
             jsonData.batch_checkbox = batch
-            await Axios.post(postUrl, jsonData, headers).then((response) => { navigate('/products'); })
-            .catch((e) => {
+            await Axios.post(postUrl, jsonData, headers).then(() => {
+                navigate('/products');
+            }).catch((e) => {
                 console.log(e.response.data.errors);
                 setError(e.response.data.errors)
             })
