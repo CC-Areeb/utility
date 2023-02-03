@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
 
 export default function EditProduct() {
 
@@ -13,46 +13,33 @@ export default function EditProduct() {
             "Content-Type": `multipart/form-data` /* Always needed for files */
         }
     }
-    const [formData, setFormData] = useState({
-        // "title": "",
-        // "image": "",
-        // "header": "",
-        // "imagealt": "",
-        // "recipe1": "",
-        // "recipe2": "",
-        // "recipe3": "",
-        // "content": "",
-        // "sku": "",
-        // "recipe1_url": "",
-        // "recipe2_url": "",
-        // "recipe3_url": "",
-    });
+    const [formData, setFormData] = useState({});
 
     const { slug } = useParams();
 
     // Get request for 1 single data
-    const getUrl = `http://127.0.0.1:8000/api/products/${slug}/edit`;
+    const getUrl = `http://staging.comvita.test/api/products/${slug}/edit`;
     useEffect(() => {
-        async function getData () {
+        async function getData() {
             await Axios.get(getUrl, headers)
-            .then(response => {
-                setFormData(response.data[0]);
-                // console.log(response.data);
-            }).catch((error) => { console.log(error); });
+                .then(response => {
+                    setFormData(response.data[0]);
+                }).catch((error) => { console.log(error); });
         }
         getData()
     }, []);
 
     // Put request for updating
-    const postUrl = `http://127.0.0.1:8000/api/products/${slug}/edit`;
-    console.log(formData);
+    const postUrl = `http://staging.comvita.test/api/products/${slug}/update`;
     let navigate = useNavigate();
     function handleSubmit(event) {
         event.preventDefault();
-        Axios.post(postUrl, formData, headers).then((response) => {
-            console.log(response);
+        Axios.post(postUrl, formData, headers).then(() => {
             navigate('/products');
-        }).catch((error) => { setError(error.response.data.errors) });
+        }).catch((error) => {
+            console.log(error);
+            setError(error.response.data.errors)
+        });
     }
 
     const textAreaHeight = {
@@ -62,7 +49,7 @@ export default function EditProduct() {
     return (
         <div className='items'>
             <p className='display-1'>Edit Products</p>
-            <form onSubmit={handleSubmit} className='content w-75' encType='multipart/form-data'>
+            <form onSubmit={handleSubmit} className='content w-75' method='post' encType='multipart/form-data'>
                 <div className="container mb-4">
                     <div className="row">
                         <div className="col-4">
@@ -83,7 +70,7 @@ export default function EditProduct() {
                                 <input
                                     placeholder="Sku"
                                     className="form-control"
-                                    type="text" 
+                                    type="text"
                                     value={formData.sku}
                                     onChange={e => setFormData({ ...formData, sku: e.target.value })}
                                 />
@@ -134,9 +121,10 @@ export default function EditProduct() {
                                 <div className="col-6">
                                     <input
                                         type="file"
-                                        name=""
+                                        accept="image/jpg,image/jpeg,image/png"
+                                        name="image"
                                         id=""
-                                        onChange={e => setFormData({ ...formData, file: e.target.value })}
+                                        onChange={e => setFormData({ ...formData, image: e.target.files[0] })}
                                         className='border p-2 rounded-3 w-100'
                                     />
                                 </div>
@@ -147,8 +135,8 @@ export default function EditProduct() {
                                             type="text"
                                             name=""
                                             id=""
-                                            value={formData.imageDesc}
-                                            onChange={e => setFormData({ ...formData, imageDesc: e.target.value })}
+                                            value={formData.imagealt}
+                                            onChange={e => setFormData({ ...formData, imagealt: e.target.value })}
                                             placeholder='Image description'
                                             className='form-control w-100 py-2'
                                         />
@@ -166,8 +154,8 @@ export default function EditProduct() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    checked={formData.bestBefore}
-                                    onChange={e => setFormData({ ...formData, bestBefore: e.target.checked })}
+                                    checked={formData.date_checkbox}
+                                    onChange={e => setFormData({ ...formData, date_checkbox: e.target.checked })}
                                     id="best_before"
                                 />
                                 <label className="form-check-label" htmlFor="best_before">
@@ -179,8 +167,8 @@ export default function EditProduct() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    checked={formData.batchNumber}
-                                    onChange={e => setFormData({ ...formData, batchNumber: e.target.checked })}
+                                    checked={formData.batch_checkbox}
+                                    onChange={e => setFormData({ ...formData, batch_checkbox: e.target.checked })}
                                     id="batch_number"
                                 />
                                 <label className="form-check-label" htmlFor="batch_number">

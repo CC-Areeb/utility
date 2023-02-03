@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import loader from '../utilities/loader.gif';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export default function Products() {
     // URLs
-    const apiURL = 'http://127.0.0.1:8000/api/products';
+    const apiURL = 'http://staging.comvita.test/api/products';
     const token = localStorage.getItem('token');
     const searchUrl = "http://localhost:8000/products?q=";
     const headers = {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            "Content-Type": `multipart/form-data` /* Always needed for files */
         }
     }
 
@@ -21,14 +22,14 @@ export default function Products() {
     const [pageNumber, setPageNumber] = useState(0);
 
     // Basic info for pagination
-    const dataPerPage = 3;
+    const dataPerPage = 10;
     const pagesVisited = pageNumber * dataPerPage;
 
     // Get request
     useEffect(() => {
         const dataFetch = async () => {
             setLoading(true);
-            Axios.get(apiURL,headers).then(function (response) {
+            Axios.get(apiURL, headers, { responseType: 'arraybuffer' }).then(function (response) {
                 setLoading(false);
                 setState(response.data.data);
             });
@@ -46,10 +47,14 @@ export default function Products() {
     }
 
     // Delete request
+    let navigate = new useNavigate();
     function handleDelete(id) {
-        Axios.delete(apiURL + '/' + id)
-            .then(() => {
-                setState(data => data.filter(item => item.id !== id));
+        Axios.delete(`http://staging.comvita.test/api/products/delete/${id}`, headers)
+            .then((response) => {
+                setState(response.data);
+                // data => data.filter(item => item.id !== id)
+                // navigate('/products')
+                window.location.reload(true);
             });
     }
 
@@ -59,11 +64,11 @@ export default function Products() {
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.id}>
+                <td className='border'>{<img src={`${apiURL}${state.image.original}`} />}</td>
                 <td className='border'>{state.title}</td>
                 <td className='border'>{state.category}</td>
                 <td className='border'>{state.header}</td>
                 <td className='border'>{state.sku}</td>
-                <td className='border'>{state.content}</td>
                 <td className='border'>
                     <NavLink to={`/products/${state.slug}/edit`}>
                         <button type="button" className="btn btn-outline-primary mx-2">
@@ -109,11 +114,11 @@ export default function Products() {
                 <table className="table">
                     <thead>
                         <tr id='product_main_table'>
+                            <th onClick={toggleClick} scope="col" className='border prod_table_head'>Image</th>
                             <th onClick={toggleClick} scope="col" className='border prod_table_head'>Title</th>
                             <th onClick={toggleClick} scope="col" className='border prod_table_head'>Category</th>
                             <th onClick={toggleClick} scope="col" className='border prod_table_head'>Description</th>
                             <th onClick={toggleClick} scope="col" className='border prod_table_head'>SKU</th>
-                            <th onClick={toggleClick} scope="col" className='border prod_table_head'>Content</th>
                             <th scope="col" className='border'>Actions</th>
                         </tr>
                     </thead>

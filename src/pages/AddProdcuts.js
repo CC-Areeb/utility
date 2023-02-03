@@ -6,7 +6,7 @@ import img2 from '../utilities/img2.jpg';
 
 export default function AddProdcuts() {
     // Urls
-    const postUrl = 'http://127.0.0.1:8000/api/products/store';
+    const postUrl = 'http://staging.comvita.test/api/products/store';
 
     // all the states
     const [title, setTitle] = useState('');
@@ -36,7 +36,7 @@ export default function AddProdcuts() {
     // Data to send 
     const jsonData = {
         title: title,
-        packaged_description: 'test',
+        // packaged_description: 'test',
         category_id: categoryId,
         company_id: 1,
         date_checkbox: dateCheckbox,
