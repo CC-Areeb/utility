@@ -75,6 +75,7 @@ export default function EditProduct() {
                                     onChange={e => setFormData({ ...formData, sku: e.target.value })}
                                 />
                                 <label className="form-label">Sku</label>
+                                {/* <span className="text-danger">{error.sku}</span> */}
                             </div>
                         </div>
 

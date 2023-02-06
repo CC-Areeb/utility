@@ -1,16 +1,17 @@
 import Axios from 'axios';
-import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
 import img1 from '../utilities/img1.jpg';
 import img2 from '../utilities/img2.jpg';
 
 export default function AddProdcuts() {
     // Urls
     const postUrl = 'http://staging.comvita.test/api/products/store';
+    const getCategory = 'http://staging.comvita.test/api/categories';
 
     // all the states
     const [title, setTitle] = useState('');
-    const [categoryId, setCategoryId] = useState('');
+    const [categoryId, setCategoryId] = useState([]);
     const [dateCheckbox, setDateCheckbox] = useState('');
     const [batchCheckbox, setBatchCheckbox] = useState('');
     const [header, setHeader] = useState('');
@@ -36,7 +37,6 @@ export default function AddProdcuts() {
     // Data to send 
     const jsonData = {
         title: title,
-        // packaged_description: 'test',
         category_id: categoryId,
         company_id: 1,
         date_checkbox: dateCheckbox,
@@ -56,6 +56,14 @@ export default function AddProdcuts() {
 
     // calling the navigate hook from react-router-dom
     let navigate = useNavigate();
+
+
+    // get all categories based on product id
+    useEffect(() => {
+        Axios.get(getCategory, headers).then((response) => {
+            setCategoryId(response.data);
+        });
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -81,7 +89,7 @@ export default function AddProdcuts() {
     return (
         <div className='items mb-4'>
             <p className='display-1' id='product_heading'>Add Products</p>
-            <form onSubmit={handleSubmit} method='POST' className='content w-75' enctype="multipart/form-data">
+            <form onSubmit={handleSubmit} method='POST' className='content w-75' encType="multipart/form-data">
                 <div className="container mb-4">
                     <div className="row">
                         <div className="col-4">
@@ -113,11 +121,15 @@ export default function AddProdcuts() {
                         </div>
 
                         <div className="col-4">
-                            <select class="form-select" name="" id="category_dropDown">
-                                <option value="" selected>Select Category</option>
-                                <option value={categoryId}></option>
-                                {/* <option value={category}>option 2</option> */}
-                                {/* <option value={category}>option 3</option> */}
+                            <select className="form-select" name="category_id" id="category_dropDown">
+                                <option value="" disabled>Select Category</option>
+                                {
+                                    categoryId.map(category => (
+                                        <option key={category.id} value={category.id}>
+                                            {category.title}
+                                        </option>
+                                    ))
+                                }
                             </select>
                             <span className='text-danger'>{error.category_id}</span>
                         </div>
@@ -188,27 +200,27 @@ export default function AddProdcuts() {
                 <fieldset className='border p-4 rounded-2' id='product_fieldset'>
                     <legend className='rounded-2 py-2 text-center' id='content_legend_batch'>Batch Details</legend>
                     <div className="">
-                        <div class="form-check">
-                            <input class="form-check-input"
+                        <div className="form-check">
+                            <input className="form-check-input"
                                 type="checkbox"
                                 id="best_before"
                                 checked={dateCheckbox}
                                 onChange={e => setDateCheckbox(e.target.checked)}
                             />
-                            <label class="form-check-label" for="best_before">
+                            <label className="form-check-label" htmlFor="best_before">
                                 Show Best Before Date
                             </label>
                         </div>
 
-                        <div class="form-check mb-2">
+                        <div className="form-check mb-2">
                             <input
-                                class="form-check-input"
+                                className="form-check-input"
                                 type="checkbox"
                                 checked={batchCheckbox}
                                 onChange={e => setBatchCheckbox(e.target.checked)}
                                 id="batch_number"
                             />
-                            <label class="form-check-label" for="batch_number">
+                            <label className="form-check-label" htmlFor="batch_number">
                                 Show Batch Number
                             </label>
                         </div>
@@ -222,80 +234,80 @@ export default function AddProdcuts() {
                     <div className="container">
                         <div className="row">
                             <div className="col-6 my-1">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        className="form-control"
                                         id="recepi_1"
                                         placeholder="Recipe 1"
                                         onChange={e => setRecipe1(e.target.value)}
                                     />
-                                    <label for="recepi_1">Recipe 1</label>
+                                    <label htmlFor="recepi_1">Recipe 1</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="url"
-                                        class="form-control"
+                                        className="form-control"
                                         id="recepi_1_url"
                                         placeholder="Recipe 1 URL"
                                         onChange={e => setRecipe1Url(e.target.value)}
                                     />
-                                    <label for="recepi_1_url">Recipe 1 URL</label>
+                                    <label htmlFor="recepi_1_url">Recipe 1 URL</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        className="form-control"
                                         id="recepi_2"
                                         placeholder="Recipe 2"
                                         onChange={e => setRecipe2(e.target.value)}
                                     />
-                                    <label for="recepi_2">Recipe 2</label>
+                                    <label htmlFor="recepi_2">Recipe 2</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="url"
-                                        class="form-control"
+                                        className="form-control"
                                         id="recepi_2_url"
                                         placeholder="Recipe 2 URL"
                                         onChange={e => setRecipe2Url(e.target.value)}
                                     />
-                                    <label for="recepi_2_url">Recipe 2 URL</label>
+                                    <label htmlFor="recepi_2_url">Recipe 2 URL</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        className="form-control"
                                         id="recepi_3"
                                         placeholder="Recipe 3"
                                         onChange={e => setRecipe3(e.target.value)}
                                     />
-                                    <label for="recepi_3">Recipe 3</label>
+                                    <label htmlFor="recepi_3">Recipe 3</label>
                                 </div>
                             </div>
 
                             <div className="col-6 my-1">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="url"
-                                        class="form-control"
+                                        className="form-control"
                                         id="recepi_3_url"
                                         placeholder="Recipe 3 URL"
                                         onChange={e => setRecipe3Url(e.target.value)}
                                     />
-                                    <label for="recepi_3_url">Recipe 3 URL</label>
+                                    <label htmlFor="recepi_3_url">Recipe 3 URL</label>
                                 </div>
                             </div>
 
@@ -315,14 +327,14 @@ export default function AddProdcuts() {
                     Preview
                 </button>
 
-                <div class="modal fade" id="productPreviewModal" tabindex="-1" aria-labelledby="productPreviewModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="productPreviewModalLabel">Product Preview</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="productPreviewModal" tabIndex="-1" aria-labelledby="productPreviewModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="productPreviewModalLabel">Product Preview</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
 
                                 {/* Category content - will make this data come from category part soon */}
                                 <div className='black_box rounded-2 text-center'>
@@ -333,7 +345,7 @@ export default function AddProdcuts() {
                                         Eiusmod vel dolor sed labore tempore impedit doloremque recusandae
                                     </p>
                                     <div className="cover_image">
-                                        <img src={img1} class="img-fluid" alt="Dummy content" />
+                                        <img src={img1} className="img-fluid" alt="Dummy content" />
                                     </div>
                                 </div>
 
@@ -348,7 +360,7 @@ export default function AddProdcuts() {
                                 {/* Product content */}
                                 <div className='yellow_box rounded-2 text-center'>
                                     <div className="cover_image">
-                                        <img src={img2} class="img-fluid" alt="Dummy content" />
+                                        <img src={img2} className="img-fluid" alt="Dummy content" />
                                     </div>
                                     <p className="pt-4">In your hands, you have certified</p>
                                     <h1 className="p-4">
@@ -381,14 +393,14 @@ export default function AddProdcuts() {
                                     <h3 className='p-4 text-center text-white'>Sign Up Here</h3>
                                     <p className='p-4 text-center text-white'>Learn more about the benefits of Mānuka Honey and receive special offers from Comvita</p>
                                     <form action="" className='pb-4 ps-4 pe-4'>
-                                        <div class="form-floating mb-4">
+                                        <div className="form-floating mb-4">
                                             <input
                                                 type="email"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="modal_email"
                                                 placeholder="email@example.com"
                                             />
-                                            <label for="modal_email">Email address</label>
+                                            <label htmlFor="modal_email">Email address</label>
                                         </div>
                                     </form>
                                 </div>
@@ -396,8 +408,8 @@ export default function AddProdcuts() {
                                 {/* Batch content */}
                                 <h1>Notice - Batch items are ongoing, please wait. 😇</h1>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
