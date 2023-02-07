@@ -26,6 +26,7 @@ export default function AddProdcuts() {
     const [recipe1Url, setRecipe1Url] = useState('');
     const [recipe2Url, setRecipe2Url] = useState('');
     const [recipe3Url, setRecipe3Url] = useState('');
+    const [categoryModal, setCategoryModal] = useState('');
     const [error, setError] = useState([]);
     const token = localStorage.getItem('token');
     const headers = {
@@ -74,11 +75,9 @@ export default function AddProdcuts() {
             let batch = batchCheckbox == "" ? false : true
             jsonData.batch_checkbox = batch
             console.log(jsonData);
-            await Axios.post(postUrl, jsonData, headers).then((response) => {
-                console.log(response.data); 
+            await Axios.post(postUrl, jsonData, headers).then(() => {
                 navigate('/products');
             }).catch((e) => {
-                console.log(e.response.data.errors);
                 setError(e.response.data.errors)
             })
         };
@@ -87,6 +86,14 @@ export default function AddProdcuts() {
 
     const textAreaHeight = {
         height: '100px'
+    }
+
+    const showCat = () => {
+        let data = categoryId.filter((val) => {
+            return val.id == cat
+        });
+        // console.log(data);
+        setCategoryModal(data[0] ? data[0] : '');
     }
 
     return (
@@ -326,6 +333,7 @@ export default function AddProdcuts() {
                     className="btn btn-outline-primary mt-4 btn-lg"
                     data-bs-toggle="modal"
                     data-bs-target="#productPreviewModal"
+                    onClick={showCat}
                 >
                     Preview
                 </button>
@@ -341,11 +349,11 @@ export default function AddProdcuts() {
 
                                 {/* Category content - will make this data come from category part soon */}
                                 <div className='black_box rounded-2 text-center'>
-                                    <h1 className="p-4">
-                                        Qui quod quisquam quod voluptatum cum veritatis fugiat ex r
+                                    <h1 className="p-4" onChange={event => setCategoryId(event.target.value)}>
+                                        {categoryModal.headerheading}
                                     </h1>
                                     <p className='fs-5'>
-                                        Eiusmod vel dolor sed labore tempore impedit doloremque recusandae
+                                        {categoryModal.description}
                                     </p>
                                     <div className="cover_image">
                                         <img src={img1} className="img-fluid" alt="Dummy content" />
