@@ -12,6 +12,7 @@ export default function AddProdcuts() {
     // all the states
     const [title, setTitle] = useState('');
     const [categoryId, setCategoryId] = useState([]);
+    const [cat, setCat] = useState('');
     const [dateCheckbox, setDateCheckbox] = useState('');
     const [batchCheckbox, setBatchCheckbox] = useState('');
     const [header, setHeader] = useState('');
@@ -37,7 +38,7 @@ export default function AddProdcuts() {
     // Data to send 
     const jsonData = {
         title: title,
-        category_id: categoryId,
+        category_id: cat,
         company_id: 1,
         date_checkbox: dateCheckbox,
         batch_checkbox: batchCheckbox,
@@ -72,7 +73,9 @@ export default function AddProdcuts() {
             jsonData.date_checkbox = date
             let batch = batchCheckbox == "" ? false : true
             jsonData.batch_checkbox = batch
-            await Axios.post(postUrl, jsonData, headers).then(() => {
+            console.log(jsonData);
+            await Axios.post(postUrl, jsonData, headers).then((response) => {
+                console.log(response.data); 
                 navigate('/products');
             }).catch((e) => {
                 console.log(e.response.data.errors);
@@ -121,8 +124,8 @@ export default function AddProdcuts() {
                         </div>
 
                         <div className="col-4">
-                            <select className="form-select" name="category_id" id="category_dropDown">
-                                <option value="" disabled>Select Category</option>
+                            <select className="form-select" name="category_id" id="category_dropDown" onChange={event => setCat(event.target.value)}>
+                                <option>Select Category</option>
                                 {
                                     categoryId.map(category => (
                                         <option key={category.id} value={category.id}>

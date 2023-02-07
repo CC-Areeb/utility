@@ -7,8 +7,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 export default function Products() {
     // URLs
     const apiURL = 'http://staging.comvita.test/api/products';
+    const getCategoryUrl = 'http://staging.comvita.test/api/categories';
     const token = localStorage.getItem('token');
+
+
     const searchUrl = "http://localhost:8000/products?q=";
+
+
     const headers = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -18,24 +23,39 @@ export default function Products() {
 
     // use states
     const [state, setState] = useState([]);
+    const [category, setcategory] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
+
+
 
     // Basic info for pagination
     const dataPerPage = 10;
     const pagesVisited = pageNumber * dataPerPage;
 
-    // Get request
+
+
+    // Get all products
     useEffect(() => {
         const dataFetch = async () => {
             setLoading(true);
-            Axios.get(apiURL, headers, { responseType: 'arraybuffer' }).then(function (response) {
+            Axios.get(apiURL, headers).then(function (response) {
                 setLoading(false);
+                console.log(response.data.data);
                 setState(response.data.data);
             });
         };
         dataFetch();
     }, []);
+
+
+    // Get all categories
+    useEffect(() => {
+        Axios.get(getCategoryUrl, headers).then(function (response) {
+            setcategory(response.data.map(cat => {return cat.title}));
+        })
+    }, [])
+
 
 
     // Sorting data after get request
@@ -47,7 +67,6 @@ export default function Products() {
     }
 
     // Delete request
-    let navigate = new useNavigate();
     function handleDelete(id) {
         Axios.delete(`http://staging.comvita.test/api/products/delete/${id}`, headers)
             .then((response) => {
@@ -58,15 +77,14 @@ export default function Products() {
             });
     }
 
-
     // displaying data
     const displayData = state
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.id}>
-                <td className='border'>{<img src={`${apiURL}${state.image.original}`} />}</td>
+                <td className='border'>{<img src='test' />}</td>
                 <td className='border'>{state.title}</td>
-                <td className='border'>{state.category}</td>
+                <td className='border'>{state.category.title}</td>
                 <td className='border'>{state.header}</td>
                 <td className='border'>{state.sku}</td>
                 <td className='border'>
