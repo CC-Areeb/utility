@@ -7,7 +7,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 export default function Products() {
     // URLs
     const apiURL = 'http://staging.comvita.test/api/products';
-    const getCategoryUrl = 'http://staging.comvita.test/api/categories';
     const token = localStorage.getItem('token');
 
 
@@ -23,7 +22,6 @@ export default function Products() {
 
     // use states
     const [state, setState] = useState([]);
-    const [category, setcategory] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
 
@@ -47,15 +45,6 @@ export default function Products() {
         };
         dataFetch();
     }, []);
-
-
-    // Get all categories
-    useEffect(() => {
-        Axios.get(getCategoryUrl, headers).then(function (response) {
-            setcategory(response.data.map(cat => {return cat.title}));
-        })
-    }, [])
-
 
 
     // Sorting data after get request
