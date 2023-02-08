@@ -170,6 +170,10 @@
     background-color: var(--main-hover-text-color);
 }
 
+.prod_imgs {
+    width: 40px;
+    height: 40px;
+}
 
 /* Add Category */
 .button_link_container,
