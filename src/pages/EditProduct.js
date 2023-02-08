@@ -30,7 +30,7 @@ export default function EditProduct() {
     }, []);
 
     // Put request for updating
-    const postUrl = `http://staging.comvita.test/api/products/${slug}/update`;
+    const postUrl = `http://staging.comvita.test/api/products/${slug}`;
     let navigate = useNavigate();
     function handleSubmit(event) {
         event.preventDefault();
@@ -49,7 +49,7 @@ export default function EditProduct() {
     return (
         <div className='items'>
             <p className='display-1'>Edit Products</p>
-            <form onSubmit={handleSubmit} className='content w-75' method='post' encType='multipart/form-data'>
+            <form onSubmit={handleSubmit} className='content w-75' method='put' encType='multipart/form-data'>
                 <div className="container mb-4">
                     <div className="row">
                         <div className="col-4">
@@ -95,8 +95,9 @@ export default function EditProduct() {
                         <div className="mb-3 form-floating">
                             <textarea
                                 placeholder="Header"
-                                className="form-control"
+                                className="form-control header"
                                 type="text"
+                                name='header'
                                 value={formData.header}
                                 onChange={e => setFormData({ ...formData, header: e.target.value })}
                                 style={textAreaHeight}
