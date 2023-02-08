@@ -1,13 +1,12 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from "react-router-dom";
-import img1 from '../utilities/img1.jpg';
-import img2 from '../utilities/img2.jpg';
+import { useNavigate } from "react-router-dom";
 
 export default function AddProdcuts() {
     // Urls
     const postUrl = 'http://staging.comvita.test/api/products/store';
     const getCategory = 'http://staging.comvita.test/api/categories';
+    const imgStartUrl = 'http://staging.comvita.test';
 
     // all the states
     const [title, setTitle] = useState('');
@@ -28,6 +27,7 @@ export default function AddProdcuts() {
     const [recipe3Url, setRecipe3Url] = useState('');
     const [categoryModal, setCategoryModal] = useState('');
     const [error, setError] = useState([]);
+    const [preview, setPreview] = useState(null);
     const token = localStorage.getItem('token');
     const headers = {
         headers: {
@@ -92,8 +92,14 @@ export default function AddProdcuts() {
         let data = categoryId.filter((val) => {
             return val.id == cat
         });
-        // console.log(data);
         setCategoryModal(data[0] ? data[0] : '');
+    }
+
+    const handleImageChange = (event) => {
+        const reader = new FileReader();
+        reader.onload = (e) => setPreview(e.target.result);
+        reader.readAsDataURL(event.target.files[0]);
+        setImage(event.target.files[0]);
     }
 
     return (
@@ -182,7 +188,10 @@ export default function AddProdcuts() {
                                     name="image"
                                     id=""
                                     accept="image/jpg,image/jpeg,image/png"
-                                    onChange={e => setImage(e.target.files[0])}
+                                    onChange={
+                                        handleImageChange
+                                        // e => setImage(e.target.files[0])
+                                    }
                                     className='border p-2 rounded-3 w-100'
                                 />
                                 <span className='text-danger'>{error.image}</span>
@@ -347,8 +356,8 @@ export default function AddProdcuts() {
                             </div>
                             <div className="modal-body">
 
-                                {/* Category content - will make this data come from category part soon */}
-                                <div className='black_box rounded-2 text-center'>
+                                {/* Category content */}
+                                <div className='black_box text-center'>
                                     <h1 className="p-4" onChange={event => setCategoryId(event.target.value)}>
                                         {categoryModal.headerheading}
                                     </h1>
@@ -356,7 +365,7 @@ export default function AddProdcuts() {
                                         {categoryModal.description}
                                     </p>
                                     <div className="cover_image">
-                                        <img src={img1} className="img-fluid" alt="Dummy content" />
+                                        <img src={`${imgStartUrl}` + categoryModal.image} className="img-fluid" alt="Category preview" />
                                     </div>
                                 </div>
 
@@ -371,7 +380,7 @@ export default function AddProdcuts() {
                                 {/* Product content */}
                                 <div className='yellow_box rounded-2 text-center'>
                                     <div className="cover_image">
-                                        <img src={img2} className="img-fluid" alt="Dummy content" />
+                                        <img src={preview} className="img-fluid" alt="Product preview" />
                                     </div>
                                     <p className="pt-4">In your hands, you have certified</p>
                                     <h1 className="p-4">

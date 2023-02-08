@@ -8,6 +8,7 @@ export default function Products() {
     // URLs
     const apiURL = 'http://staging.comvita.test/api/products';
     const token = localStorage.getItem('token');
+    const imgStartUrl = 'http://staging.comvita.test';
 
 
     const searchUrl = "http://localhost:8000/products?q=";
@@ -71,7 +72,7 @@ export default function Products() {
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.id}>
-                <td className='border'>{<img src='test' />}</td>
+                <td className='border'>{<img className='prod_imgs rounded-3' src={`${imgStartUrl}`+state.image.thumb} />}</td>
                 <td className='border'>{state.title}</td>
                 <td className='border'>{state.category.title}</td>
                 <td className='border'>{state.header}</td>
