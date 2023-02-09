@@ -63,7 +63,7 @@ const route = createBrowserRouter(
 
                 {/* Category pages */}
                 <Route path='/category/add' element={<AddCategory />} />
-                <Route path='/category/edit' element={<EditCategory />} />
+                <Route path='/category/:slug/edit' element={<EditCategory />} />
 
                 {/* Product pages */}
                 <Route path='/products/add' element={<AddProdcuts />} />

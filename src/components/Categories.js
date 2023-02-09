@@ -6,8 +6,16 @@ import { NavLink } from 'react-router-dom';
 
 export default function Categories() {
     // URLs
-    const apiURL = 'http://localhost:8000/category';
+    const apiURL = 'http://staging.comvita.test/api/categories';
     const searchUrl = "http://localhost:8000/category?q=";
+
+    const token = localStorage.getItem('token');
+    const headers = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": `multipart/form-data` /* Always needed for files */
+        }
+    }
 
     // Basic info for pagination
     const [pageNumber, setPageNumber] = useState(0);
@@ -16,11 +24,11 @@ export default function Categories() {
 
     // Get request
     const [loading, setLoading] = useState(false);
-    const [state, setState] = useState([]);
+    const [state, setState] = useState([]); 
     useEffect(() => {
         const dataFetch = async () => {
             setLoading(true);
-            Axios.get(apiURL).then(function (response) {
+            Axios.get(apiURL, headers).then(function (response) {
                 setLoading(false);
                 setState(response.data.map((e) => { return e }));
             });
@@ -45,7 +53,7 @@ export default function Categories() {
                 <td className='border'>{state.product_number}</td>
                 <td className='border'>{state.time_of_adding}</td>
                 <td className='border'>
-                    <NavLink to={`/category/edit?id=${state.id}`}>
+                    <NavLink to={`/category/${state.slug}/edit`}>
                         <button type="button" className="btn btn-outline-primary mx-2">
                             Edit
                             <i className="bi bi-pencil-square px-1" id='edit'></i>
@@ -88,7 +96,7 @@ export default function Categories() {
                 </table>
             </div>
             <div>
-                <NavLink className='text-decoration-none' id='add_cat' to='/category/add'>Add Product</NavLink>
+                <NavLink className='text-decoration-none' id='add_cat' to='/category/add'>Add Category</NavLink>
             </div>
         </div>
     )

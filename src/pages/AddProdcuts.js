@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddProdcuts() {
     // Urls
-    const postUrl = 'http://staging.comvita.test/api/products/store';
+    const postUrl = 'http://staging.comvita.test/api/product/store';
     const getCategory = 'http://staging.comvita.test/api/categories';
     const imgStartUrl = 'http://staging.comvita.test';
 
@@ -75,8 +75,9 @@ export default function AddProdcuts() {
             let batch = batchCheckbox == "" ? false : true
             jsonData.batch_checkbox = batch
             console.log(jsonData);
-            await Axios.post(postUrl, jsonData, headers).then(() => {
-                navigate('/products');
+            await Axios.post(postUrl, jsonData, headers).then((response) => {
+                console.log(response);
+                // navigate('/products');
             }).catch((e) => {
                 setError(e.response.data.errors)
             })
