@@ -40,7 +40,6 @@ export default function Products() {
             setLoading(true);
             Axios.get(apiURL, headers).then(function (response) {
                 setLoading(false);
-                console.log(response.data.data);
                 setState(response.data.data);
             });
         };
