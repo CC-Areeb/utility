@@ -1,14 +1,14 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditCategory() {
 
     // Image url
-    const startURl = 'http://staging.comvita.test/images/';
+    const startUrl = 'http://staging.comvita.test/images/';
 
 
-    // Params
+    // Query paramenter
     const { slug } = useParams();
 
 
@@ -16,7 +16,7 @@ export default function EditCategory() {
     const [categoryData, setCategoryData] = useState({});
 
 
-    // Bearer token to aviod CORS and for security
+    // Bearer token for security
     const token = localStorage.getItem('token');
     const headers = {
         headers: {
@@ -27,23 +27,32 @@ export default function EditCategory() {
 
 
     // Get single category data based on slug
-    const updateUrl = `http://staging.comvita.test/api/categories/${slug}/edit`;
+    const editUrl = `http://staging.comvita.test/api/categories/${slug}/edit`;
     useEffect(() => {
-        Axios.get(updateUrl, headers).then(function (response) {
-            console.log(response.data);
+        Axios.get(editUrl, headers).then(function (response) {
             setCategoryData(response.data);
-
         })
     }, [])
 
 
 
-    const textAreaHeight = {
-        height: '100px'
+    // Update category usign a POST request
+    const update = 'http://staging.comvita.test/api/categories/update';
+    let navigate = useNavigate();
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(categoryData);
+        Axios.post(update, categoryData, headers).then(function (response) {
+            console.log(response);
+            navigate('/category')
+        }).catch(function (error) {
+            console.log(error)
+        })
     }
 
-    const handleSubmit = () => {
-        console.log('test');
+
+    const textAreaHeight = {
+        height: '100px'
     }
 
     return (
@@ -104,7 +113,7 @@ export default function EditCategory() {
                                     onChange={e => setCategoryData({ ...categoryData, video: e.target.files[0] })}
                                     className='border p-2 rounded-3 w-100'
                                 />
-                                {<img className='categoryImg' src={`${startURl}` + categoryData.video} alt="" srcset="" />}
+                                {<img className='categoryImg' src={`${startUrl}` + categoryData.video} alt="" srcset=""  />}
                             </div>
 
                             <div className="col-6">
@@ -214,7 +223,7 @@ export default function EditCategory() {
                     </div>
                 </fieldset>
 
-                <button type="submit" className="btn btn-outline-success my-4 mx-4 btn-lg">Add Category</button>
+                <button type="submit" className="btn btn-outline-success my-4 mx-4 btn-lg">Update Category</button>
 
                 {/* Main modal */}
                 <button

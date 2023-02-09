@@ -24,7 +24,7 @@ export default function Categories() {
 
     // Get request
     const [loading, setLoading] = useState(false);
-    const [state, setState] = useState([]); 
+    const [state, setState] = useState([]);
     useEffect(() => {
         const dataFetch = async () => {
             setLoading(true);
@@ -35,6 +35,8 @@ export default function Categories() {
         };
         dataFetch();
     }, []);
+
+    console.log();
 
     // Sorting data after get request
     const [isToggled, setisToggled] = useState(false);
@@ -51,7 +53,7 @@ export default function Categories() {
             return <tr key={state.url}>
                 <td className='border'>{state.title}</td>
                 <td className='border'>{state.product_number}</td>
-                <td className='border'>{state.time_of_adding}</td>
+                <td className='border'>{state.created_at}</td>
                 <td className='border'>
                     <NavLink to={`/category/${state.slug}/edit`}>
                         <button type="button" className="btn btn-outline-primary mx-2">
@@ -69,8 +71,17 @@ export default function Categories() {
         setSearch(e.target.value);
         Axios.get(searchUrl + e.target.value)
             .then((data) => {
-                setState(data.data.map((e) => { return e }));
+                setState(data.data.map((e) => {
+                    return e
+                }));
             });
+    }
+
+
+    // calculation for pagination
+    const pageCount = Math.ceil(state.length / dataPerPage);
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
     }
 
     return (
@@ -95,6 +106,21 @@ export default function Categories() {
                     </tbody>
                 </table>
             </div>
+
+            <div id='pagination_items'>
+                <ReactPaginate
+                    previousLabel={'Previous'}
+                    nextLabel={'Next'}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={'paginateButton'}
+                    previousLinkClassName={'backBtn'}
+                    nextLinkClassName={'nextBtn'}
+                    disabledClassName={'paginateDisabled'}
+                    activeClassName={'paginateActive'}
+                />
+            </div>
+
             <div>
                 <NavLink className='text-decoration-none' id='add_cat' to='/category/add'>Add Category</NavLink>
             </div>
