@@ -3,7 +3,7 @@ import Axios from "axios";
 
 const Login = () => {
     // URLs
-    const loginUrl = 'http://127.0.0.1:8000/api/login'; // This is just for development only, make sure to call the URLs from you environment file
+    const loginUrl = 'http://staging.comvita.test/api/login'; // This is just for development only, make sure to call the URLs from you environment file
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
