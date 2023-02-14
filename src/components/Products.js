@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 export default function Products() {
     // URLs
-    const apiURL = 'http://staging.comvita.test/api/products';
+    const apiURL = 'http://staging.comvita.test/api/product';
     const token = localStorage.getItem('token');
     const imgStartUrl = 'http://staging.comvita.test';
 
@@ -57,7 +57,7 @@ export default function Products() {
 
     // Delete request
     function handleDelete(id) {
-        Axios.delete(`http://staging.comvita.test/api/products/delete/${id}`, headers)
+        Axios.delete(`http://staging.comvita.test/api/product/delete/${id}`, headers)
             .then((response) => {
                 setState(response.data);
                 // data => data.filter(item => item.id !== id)
@@ -71,7 +71,7 @@ export default function Products() {
         .slice(pagesVisited, pagesVisited + dataPerPage)
         .map(state => {
             return <tr key={state.id}>
-                <td className='border'>{<img className='prod_imgs rounded-3' src={`${imgStartUrl}`+state.image.thumb} />}</td>
+                <td className='border'>{<img className='prod_imgs rounded-3' src={`${imgStartUrl}`+state.image['thumb']} />}</td>
                 <td className='border'>{state.title}</td>
                 <td className='border'>{state.category.title}</td>
                 <td className='border'>{state.header}</td>

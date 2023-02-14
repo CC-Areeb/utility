@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AddCategory() {
     // Urls
-    const postUrl = 'http://localhost:8000/category';
+    const postUrl = 'http://staging.comvita.test/api/categories/store';
 
     // All states for adding
     const [title, setTitle] = useState('');
@@ -35,14 +35,30 @@ export default function AddCategory() {
         second_image_description: secondImageDesc,
     }
 
+
+    // Bearer token for security
+    const token = localStorage.getItem('token');
+    const headers = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": `multipart/form-data` /* Always needed for files */
+        }
+    }
+
+
     // calling the navigate hook from react-router-dom
     let navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const addData = async () => {
-            Axios.post(postUrl, categoryData)
-            navigate('/category');
+            Axios.post(postUrl, headers, categoryData)
+                .then(function (event) {
+                    console.log(event);
+                    // navigate('/category');
+                }).catch(error => {
+                    console.log(error);
+                })
         };
         addData();
     }
@@ -55,7 +71,7 @@ export default function AddCategory() {
     return (
         <div className='items'>
             <p className="display-1">Category</p>
-            <form onSubmit={handleSubmit} method='POST' className='content w-75'>
+            <form onSubmit={handleSubmit} method='POST' className='content w-75' encType="multipart/form-data">
                 <div className="container mb-4">
                     <div className="row">
                         <div className="col-12">
@@ -159,7 +175,7 @@ export default function AddCategory() {
                     <div className="container">
                         <div className="row">
                             <div className="col-6 form-floating mb-3">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="text"
                                         className='form-control'
@@ -174,7 +190,7 @@ export default function AddCategory() {
                             </div>
 
                             <div className="col-6 form-floating mb-3">
-                                <div class="form-floating mb-3">
+                                <div className="form-floating mb-3">
                                     <input
                                         type="url"
                                         className='form-control'
@@ -201,7 +217,7 @@ export default function AddCategory() {
                             </div>
 
                             <div className="col-6">
-                                <div class="mb-3 file_desc">
+                                <div className="mb-3 file_desc">
                                     <input
                                         type="text"
                                         className='form-control py-2'
@@ -220,31 +236,107 @@ export default function AddCategory() {
 
                 <button type="submit" className="btn btn-outline-success my-4 mx-4 btn-lg">Add Category</button>
 
+
                 {/* Main modal */}
                 <button
                     type="button"
                     className="btn btn-outline-primary btn-lg"
                     data-bs-toggle="modal"
                     data-bs-target="#productPreviewModal"
+                    // onClick={showCat}
                 >
                     Preview
                 </button>
 
-                <div class="modal fade" id="productPreviewModal" tabindex="-1" aria-labelledby="productPreviewModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="productPreviewModalLabel">Product Preview</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="productPreviewModal" tabIndex="-1" aria-labelledby="productPreviewModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="productPreviewModalLabel">Product Preview</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
+
+                                {/* Category content */}
+                                <div className='black_box text-center'>
+                                    <h1 className="p-4" /* onChange={event => setCategoryId(event.target.value)} */>
+                                        {/* {categoryModal.headerheading} */}
+                                    </h1>
+                                    <p className='fs-5'>
+                                        {/* {categoryModal.description} */}
+                                    </p>
+                                    <div className="cover_image">
+                                        {/* <img src={`${imgStartUrl}` + categoryModal.image} className="img-fluid" alt="Category preview" /> */}
+                                    </div>
+                                </div>
+
+                                {/* Static content */}
+                                <div className='green_box p-4 text-center'>
+                                    <h3 className='mb-4'>From pristine and remote forests in New Zealand</h3>
+                                    <p className='fs-5'>
+                                        We bring you this genuine Mānuka Honey with UMF™ levels guaranteed for its entire shelf life.
+                                    </p>
+                                </div>
+
+                                {/* Product content */}
+                                <div className='yellow_box rounded-2 text-center'>
+                                    <div className="cover_image">
+                                        <img src='' className="img-fluid" alt="Product preview" />
+                                    </div>
+                                    <p className="pt-4">In your hands, you have certified</p>
+                                    <h1 className="p-4">
+                                        Qui quod quisquam quod voluptatum cum veritatis fugiat ex r
+                                    </h1>
+                                    <p className='fs-5 pb-4'>
+                                        Eiusmod vel dolor sed labore tempore impedit doloremque recusandae
+                                    </p>
+                                    <div className="recipe_link_container pb-4">
+                                        <a className='recipe_link text-success' /* href={recipe1Url} */>
+                                            {/* {recipe1} */}
+                                        </a>
+                                    </div>
+
+                                    <div className="recipe_link_container pb-4">
+                                        <a className='recipe_link text-success' /* href={recipe2Url} */>
+                                            {/* {recipe2} */}
+                                        </a>
+                                    </div>
+
+                                    <div className="recipe_link_container pb-4">
+                                        <a className='recipe_link text-success' /* href={recipe3Url} */>
+                                            {/* {recipe3} */}
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* Static Email box */}
+                                <div className='static_email_box'>
+                                    <h3 className='p-4 text-center text-white'>Sign Up Here</h3>
+                                    <p className='p-4 text-center text-white'>Learn more about the benefits of Mānuka Honey and receive special offers from Comvita</p>
+                                    <form action="" className='pb-4 ps-4 pe-4'>
+                                        <div className="form-floating mb-4">
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                id="modal_email"
+                                                placeholder="email@example.com"
+                                            />
+                                            <label htmlFor="modal_email">Email address</label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                {/* Batch content */}
+                                <h1>Notice - Batch items are ongoing, please wait. 😇</h1>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
 
             </form>
         </div>

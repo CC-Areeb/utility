@@ -4,8 +4,10 @@ import {useNavigate, useParams } from 'react-router-dom';
 
 export default function EditProduct() {
 
+    // Constants
     const [error, setError] = useState([]);
-
+    const [formData, setFormData] = useState({});
+    const { slug } = useParams();
     const token = localStorage.getItem('token');
     const headers = {
         headers: {
@@ -13,12 +15,9 @@ export default function EditProduct() {
             "Content-Type": `multipart/form-data` /* Always needed for files */
         }
     }
-    const [formData, setFormData] = useState({});
-
-    const { slug } = useParams();
 
     // Get request for 1 single data
-    const getUrl = `http://staging.comvita.test/api/products/${slug}/edit`;
+    const getUrl = `http://staging.comvita.test/api/product/${slug}/edit`;
     useEffect(() => {
         async function getData() {
             await Axios.get(getUrl, headers)
@@ -29,12 +28,14 @@ export default function EditProduct() {
         getData()
     }, []);
 
+
+
     // Put request for updating
-    const postUrl = `http://staging.comvita.test/api/products/${slug}`;
+    const postUrl = `http://staging.comvita.test/api/product/update/${slug}`;
     let navigate = useNavigate();
     function handleSubmit(event) {
         event.preventDefault();
-        Axios.post(postUrl, formData, headers).then(() => {
+        Axios.post(postUrl, headers, formData).then(() => {
             navigate('/products');
         }).catch((error) => {
             console.log(error);
