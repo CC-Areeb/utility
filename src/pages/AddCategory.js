@@ -8,8 +8,6 @@ export default function AddCategory() {
 
     // All states for adding
     const [title, setTitle] = useState('');
-    // const [time, setTime] = useState('');
-    // const [productNumber, setProductNumber] = useState('');
     const [heading, setHeading] = useState('');
     const [subHeading, setSubHeading] = useState('');
     const [contentHeading, setContentHeading] = useState('');
@@ -18,46 +16,43 @@ export default function AddCategory() {
     const [button, setButton] = useState('');
     const [buttonLink, setButtonLink] = useState('');
     const [secondImage, setSecondImage] = useState('');
+    const [firstImageDesc, setFirstImageDesc] = useState('');
     const [secondImageDesc, setSecondImageDesc] = useState('');
 
     const categoryData = {
         title: title,
-        // time_of_adding: time,
-        // product_number: productNumber,
-        heading: heading,
-        sub_heading: subHeading,
-        content_heading: contentHeading,
-        content_sub_heading: contentSubHeading,
-        file: file,
-        button_name: button,
-        button_link: buttonLink,
-        second_image: secondImage,
-        second_image_description: secondImageDesc,
+        headerheading: heading,
+        description: subHeading,
+        video: file,
+        backgroundalt: firstImageDesc,
+        contentheading: contentHeading,
+        contentsubheading: contentSubHeading,
+        buttonname: button,
+        buttonlink: buttonLink,
+        image: secondImage,
+        imagedescription: secondImageDesc,
+        company_id: 1
     }
 
 
     // Bearer token for security
     const token = localStorage.getItem('token');
     const headers = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": `multipart/form-data` /* Always needed for files */
-        }
+        'Authorization': `Bearer ${token}`,
+        "Content-Type": `multipart/form-data` /* Always needed for files */
     }
 
 
     // calling the navigate hook from react-router-dom
     let navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const addData = async () => {
-            Axios.post(postUrl, headers, categoryData)
+            Axios.post(postUrl, categoryData, { headers })
                 .then(function (event) {
-                    console.log(event);
-                    // navigate('/category');
+                    navigate('/category');
                 }).catch(error => {
-                    console.log(error);
+                    console.log(error, categoryData);
                 })
         };
         addData();
@@ -136,7 +131,7 @@ export default function AddCategory() {
                                         name=""
                                         id=""
                                         placeholder='Image description'
-                                        onChange={e => setFile(e.target.value)}
+                                        onChange={e => setFirstImageDesc(e.target.value)}
                                         className='form-control w-100 py-2'
                                     />
                                 </div>
@@ -243,7 +238,7 @@ export default function AddCategory() {
                     className="btn btn-outline-primary btn-lg"
                     data-bs-toggle="modal"
                     data-bs-target="#productPreviewModal"
-                    // onClick={showCat}
+                // onClick={showCat}
                 >
                     Preview
                 </button>

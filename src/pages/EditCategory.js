@@ -3,11 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditCategory() {
-
-    // Image url
-    const startUrl = 'http://staging.comvita.test/images';
-
-
     // Query paramenter
     const { slug } = useParams();
 
@@ -34,16 +29,6 @@ export default function EditCategory() {
         })
     }, [])
 
-    // Image and video changes
-    const allowedImageTypes = ['image/jpg', 'image/jpeg', 'image/png', 'video/mp4', 'video/mov', 'video/avi', 'video/flv'];
-    const handleImageChange = (event) => {
-        const selectedFile = event.target.files[0];
-        if (selectedFile && allowedImageTypes.includes(selectedFile.type)) {
-            const newImagePath = URL.createObjectURL(selectedFile);
-            setCategoryData(newImagePath);
-        }
-    };
-
 
     // Update category usign a POST request
     const update = `http://staging.comvita.test/api/categories/update/${slug}`;
@@ -51,10 +36,14 @@ export default function EditCategory() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formFileData = new FormData();
-        formFileData.append('image', event.target.image.files[0]);
+        if (typeof(categoryData.image) != 'object') {
+            categoryData.image = null;
+        }
+        if (typeof(categoryData.video) != 'object') {
+            categoryData.video = null;
+        }
         Axios.post(update, categoryData, headers).then(function (response) {
-            console.log(response);
-            // navigate('/category')
+            navigate('/category')
         }).catch(function (error) {
             console.log(error)
         })
@@ -121,11 +110,11 @@ export default function EditCategory() {
                                     name="video"
                                     id=""
                                     accept="image/jpg,image/jpeg,image/png,video/mp4,video/mov,video/avi,video/flv"
-                                    // onChange={e => setCategoryData({ ...categoryData, video: e.target.files[0] })}
-                                    onChange={handleImageChange}
+                                    onChange={e => setCategoryData({ ...categoryData, video: e.target.files[0] })}
+                                    // onChange={handleImageChange}
                                     className='border p-2 rounded-3 w-100'
                                 />
-                                {<img className='categoryImg' src={`${startUrl}` + '/' + categoryData.video} alt="" srcset="" />}
+                                {<img className='categoryImg' src={`http://staging.comvita.test/images/` + categoryData.video} alt="" srcset="" />}
                             </div>
 
                             <div className="col-6">
@@ -265,7 +254,7 @@ export default function EditCategory() {
                                         {categoryData.description}
                                     </p>
                                     <div className="cover_image">
-                                        {<img className='mw-100' src={`${startUrl}` + '/' + categoryData.video} alt="" srcset="" />}
+                                        {<img className='mw-100' src={`http://staging.comvita.test/images` + '/' + categoryData.video} alt="" srcset="" />}
                                     </div>
                                 </div>
 
@@ -281,7 +270,7 @@ export default function EditCategory() {
 
                                 <div className='yellow_box rounded-2 text-center'>
                                     <div className="cover_image">
-                                        {<img className='mw-100' src={`${startUrl}` + '/' + categoryData.video} alt="" srcset="" />}
+                                        {<img className='mw-100' src={`http://staging.comvita.test/images` + '/' + categoryData.video} alt="" srcset="" />}
                                     </div>
                                     <p className="pt-4">In your hands, you have certified</p>
                                     <h1 className="">
